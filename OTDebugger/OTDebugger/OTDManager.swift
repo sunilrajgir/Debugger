@@ -27,11 +27,6 @@ public class OTDManager {
         self.infoTypes = infoTypes
         self.dataSource = dataSource
     }
-
-    deinit {
-       
-    }
-
     public func openDebugScreen(_ viewController:UIViewController) {
         var models = [OTDScreenCellModel]()
         for type in infoTypes {
