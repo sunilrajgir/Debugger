@@ -8,23 +8,37 @@
 import UIKit
 
 enum ODTInfo: String {
-    case version = "version"
+    case version = "App Version"
     case language = "Language"
     case environment = "Environment"
 }
 
 class OTDInfoViewController: UIViewController {
-    var stackVew = UIStackView()
-    var info = [String:String]()
+    var textView = UITextView()
     override func viewDidLoad() {
         super.viewDidLoad()
-        info[ODTInfo.version.rawValue] = "3.8.0"
-        info[ODTInfo.language.rawValue] = "English"
-        info[ODTInfo.environment.rawValue] = "Environment"
+        self.view.backgroundColor = .white
+        textView.frame = self.view.frame
+        view.addSubview(textView)
+        bindData()
     }
 
-    func setupStackView() {
-        stackVew.frame = CGRect(x: 20, y: 20, width: UIScreen.main.bounds.width-20, height: UIScreen.main.bounds.height)
+    func bindData() {
+        let attributeString = NSMutableAttributedString()
+        attributeString.append(version())
+
+        textView.attributedText = attributeString
+    }
+
+    func version() -> NSAttributedString {
+        let version = NSMutableAttributedString(string: "\(ODTInfo.version.rawValue): ")
+        version.addAttribute(.foregroundColor, value: UIColor.black, range: NSMakeRange(0, version.length))
+        version.addAttribute(.font, value: UIFont.systemFont(ofSize: 16, weight: .bold), range: NSMakeRange(0, version.length))
+        let versionValue = NSMutableAttributedString(string: "3.8.0 \n")
+        versionValue.addAttribute(.foregroundColor, value: UIColor.darkGray, range: NSMakeRange(0, versionValue.length))
+        versionValue.addAttribute(.font, value: UIFont.systemFont(ofSize: 16, weight: .medium), range: NSMakeRange(0, versionValue.length))
+        version.append(versionValue)
+        return version
     }
 
 }

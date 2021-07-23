@@ -22,7 +22,9 @@ class OTDebugCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        titleLabel.frame = CGRect(x: 20, y: 0, width: contentView.frame.size.width, height: contentView.frame.size.height)
+        self.selectionStyle = .none
+        titleLabel.frame = CGRect(x: 20, y: 30, width: contentView.frame.size.width, height: 20)
+        titleLabel.textAlignment = .left
         addSubview(titleLabel)
     }
 

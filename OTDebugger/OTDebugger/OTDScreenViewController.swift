@@ -72,6 +72,8 @@ extension OTDScreenViewController {
     func openDetailScreen(cellModel: OTDScreenCellModel) {
         switch cellModel.type {
         case .basicInfo:
+            let view = OTDInfoViewController()
+            self.navigationController?.pushViewController(view, animated: false)
             print("Open basic info")
         case .translation:
             print("Open translation")
