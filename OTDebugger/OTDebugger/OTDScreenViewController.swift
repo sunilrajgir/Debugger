@@ -10,9 +10,11 @@ import UIKit
 class OTDScreenViewController: UIViewController {
     var tableView = UITableView()
     var viewModel: OTDScreenViewControllerModel!
-    init(viewModel: OTDScreenViewControllerModel) {
+    weak var dataSource: OTDManagerProtocol?
+    init(viewModel: OTDScreenViewControllerModel, dataSource: OTDManagerProtocol?) {
         super.init(nibName: nil, bundle: nil)
         self.viewModel = viewModel
+        self.dataSource = dataSource
     }
 
     required init?(coder: NSCoder) {
@@ -72,9 +74,12 @@ extension OTDScreenViewController {
     func openDetailScreen(cellModel: OTDScreenCellModel) {
         switch cellModel.type {
         case .basicInfo:
-            let view = OTDInfoViewController()
-            self.navigationController?.pushViewController(view, animated: false)
-            print("Open basic info")
+            if let viewModel = dataSource?.basicInfo() {
+                let view = OTDInfoViewController(viewModel: viewModel)
+                self.navigationController?.pushViewController(view, animated: false)
+            } else {
+                print("Provide data source for basic info ")
+            }
         case .translation:
             print("Open translation")
         case .uIDebug:
