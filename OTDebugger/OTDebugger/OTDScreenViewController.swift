@@ -62,6 +62,21 @@ extension OTDScreenViewController: UITableViewDataSource {
 
 extension OTDScreenViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        viewModel.cellModels[indexPath.row].onTap { (model) in
+//        }
+        openDetailScreen(cellModel: viewModel.cellModels[indexPath.row])
+    }
+}
 
+extension OTDScreenViewController {
+    func openDetailScreen(cellModel: OTDScreenCellModel) {
+        switch cellModel.type {
+        case .basicInfo:
+            print("Open basic info")
+        case .translation:
+            print("Open translation")
+        case .uIDebug:
+            print("Open flex UI")
+        }
     }
 }

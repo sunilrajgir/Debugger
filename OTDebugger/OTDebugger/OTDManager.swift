@@ -27,7 +27,8 @@ public class OTDManager {
     public func openDebugScreen(_ viewController:UIViewController) {
         var models = [OTDScreenCellModel]()
         for type in infoTypes {
-            models.append(OTDScreenCellModel(type: type, title: type.rawValue))
+            let cellModel = OTDScreenCellModel(type: type, title: type.rawValue)
+            models.append(cellModel)
         }
         let debug = OTDScreenViewController(viewModel: OTDScreenViewControllerModel(cellModels: models))
         viewController.navigationController?.pushViewController(debug, animated: false)

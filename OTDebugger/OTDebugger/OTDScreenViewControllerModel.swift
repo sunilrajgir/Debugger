@@ -7,8 +7,6 @@
 
 import Foundation
 
-
-
 struct OTDScreenViewControllerModel {
     let cellModels: [OTDScreenCellModel]
     init(cellModels: [OTDScreenCellModel]) {
