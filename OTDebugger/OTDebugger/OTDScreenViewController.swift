@@ -58,7 +58,7 @@ extension OTDScreenViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+        return 60
     }
 }
 
@@ -84,8 +84,12 @@ extension OTDScreenViewController {
             dataSource?.openFlex()
         case .uIDebug:
             dataSource?.openFlex()
-        case .logs:
+        case .playerLog:
             print("Player logs")
+        case .apiLog:
+            print("api logs")
+        case .consoleLog:
+            print("console logs")
         }
     }
 }

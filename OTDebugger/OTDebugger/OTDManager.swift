@@ -12,7 +12,9 @@ public enum OTDInfoType: String {
     case appInfo = "App Info"
     case translation = "Translation Key"
     case uIDebug = "Flex Debug"
-    case logs = "Logs"
+    case playerLog = "Player Log"
+    case apiLog = "API Log"
+    case consoleLog = "App console log"
 }
 
 public protocol OTDManagerProtocol: NSObject {
