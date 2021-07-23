@@ -83,7 +83,7 @@ extension OTDScreenViewController {
         case .translation:
             print("Open translation")
         case .uIDebug:
-            print("Open flex UI")
+            dataSource?.openFlex()
         case .logs:
             print("Player logs")
         }

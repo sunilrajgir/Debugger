@@ -7,6 +7,22 @@
 
 import UIKit
 
+public struct OTDInfoViewControllerModel {
+    let info : [OTDinfoModel]
+    public init(info:[OTDinfoModel]) {
+        self.info = info
+    }
+}
+
+public struct OTDinfoModel {
+    let title: String
+    let value: String
+    public init(title:String, value: String) {
+        self.title = title
+        self.value = value
+    }
+}
+
 class OTDInfoViewController: UIViewController {
     var viewModel: OTDInfoViewControllerModel!
     var textView = UITextView()
