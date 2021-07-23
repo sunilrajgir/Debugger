@@ -10,7 +10,7 @@ import UIKit
 
 public enum OTDInfoType: String {
     case appInfo = "App Info"
-    case translation = "Translation Keys"
+    case translation = "Translation Key"
     case uIDebug = "Flex Debug"
     case logs = "Logs"
 }
@@ -18,6 +18,7 @@ public enum OTDInfoType: String {
 public protocol OTDManagerProtocol: NSObject {
     func basicInfo() -> OTDInfoViewControllerModel
     func openFlex()
+    func showTranslationKey()
 }
 
 public class OTDManager {

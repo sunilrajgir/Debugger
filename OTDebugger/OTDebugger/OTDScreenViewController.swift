@@ -81,7 +81,7 @@ extension OTDScreenViewController {
                 print("Provide data source for basic info ")
             }
         case .translation:
-            print("Open translation")
+            dataSource?.openFlex()
         case .uIDebug:
             dataSource?.openFlex()
         case .logs:
