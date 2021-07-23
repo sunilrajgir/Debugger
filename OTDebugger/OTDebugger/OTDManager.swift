@@ -9,9 +9,10 @@ import Foundation
 import UIKit
 
 public enum OTDInfoType: String {
-    case basicInfo = "Basic Info"
-    case translation = "Translation"
+    case appInfo = "App Info"
+    case translation = "Translation Keys"
     case uIDebug = "Flex Debug"
+    case logs = "Logs"
 }
 
 public protocol OTDManagerProtocol: NSObject {

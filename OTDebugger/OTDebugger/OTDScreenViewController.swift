@@ -73,7 +73,7 @@ extension OTDScreenViewController: UITableViewDelegate {
 extension OTDScreenViewController {
     func openDetailScreen(cellModel: OTDScreenCellModel) {
         switch cellModel.type {
-        case .basicInfo:
+        case .appInfo:
             if let viewModel = dataSource?.basicInfo() {
                 let view = OTDInfoViewController(viewModel: viewModel)
                 self.navigationController?.pushViewController(view, animated: false)
@@ -84,6 +84,8 @@ extension OTDScreenViewController {
             print("Open translation")
         case .uIDebug:
             print("Open flex UI")
+        case .logs:
+            print("Player logs")
         }
     }
 }
