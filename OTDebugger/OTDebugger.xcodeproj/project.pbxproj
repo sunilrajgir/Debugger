@@ -14,7 +14,6 @@
 		4318D76026AAD36E00877D3F /* OTDScreenCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4318D75F26AAD36E00877D3F /* OTDScreenCellModel.swift */; };
 		4318D76326AAE50000877D3F /* OTDInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4318D76226AAE50000877D3F /* OTDInfoViewController.swift */; };
 		43822C4526A95BC500A4AF63 /* OTDebugger.h in Headers */ = {isa = PBXBuildFile; fileRef = 43822C4326A95BC500A4AF63 /* OTDebugger.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		43822C4D26A95D1C00A4AF63 /* OTDebugger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43822C4C26A95D1C00A4AF63 /* OTDebugger.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,7 +26,6 @@
 		43822C4026A95BC500A4AF63 /* OTDebugger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OTDebugger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43822C4326A95BC500A4AF63 /* OTDebugger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OTDebugger.h; sourceTree = "<group>"; };
 		43822C4426A95BC500A4AF63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		43822C4C26A95D1C00A4AF63 /* OTDebugger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTDebugger.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,7 +60,6 @@
 			children = (
 				43822C4326A95BC500A4AF63 /* OTDebugger.h */,
 				43822C4426A95BC500A4AF63 /* Info.plist */,
-				43822C4C26A95D1C00A4AF63 /* OTDebugger.swift */,
 				4313CDAE26AAA4AE00D55229 /* OTDManager.swift */,
 				4318D75426AAC0D800877D3F /* OTDScreenViewController.swift */,
 				4318D75726AAC98D00877D3F /* OTDebugCell.swift */,
@@ -154,7 +151,6 @@
 			files = (
 				4318D75B26AACADB00877D3F /* OTDScreenViewControllerModel.swift in Sources */,
 				4313CDAF26AAA4AE00D55229 /* OTDManager.swift in Sources */,
-				43822C4D26A95D1C00A4AF63 /* OTDebugger.swift in Sources */,
 				4318D76326AAE50000877D3F /* OTDInfoViewController.swift in Sources */,
 				4318D76026AAD36E00877D3F /* OTDScreenCellModel.swift in Sources */,
 				4318D75826AAC98D00877D3F /* OTDebugCell.swift in Sources */,

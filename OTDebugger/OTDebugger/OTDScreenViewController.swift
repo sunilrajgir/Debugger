@@ -10,7 +10,7 @@ import UIKit
 class OTDScreenViewController: UIViewController {
     var tableView = UITableView()
     var viewModel: OTDScreenViewControllerModel!
-    weak var dataSource: OTDManagerProtocol?
+    var dataSource: OTDManagerProtocol?
     init(viewModel: OTDScreenViewControllerModel, dataSource: OTDManagerProtocol?) {
         super.init(nibName: nil, bundle: nil)
         self.viewModel = viewModel
@@ -22,7 +22,7 @@ class OTDScreenViewController: UIViewController {
     }
 
     deinit {
-
+        print("deinit: OTDScreenViewController")
     }
     
     override func viewDidLoad() {

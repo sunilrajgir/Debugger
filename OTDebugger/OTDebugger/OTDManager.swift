@@ -25,10 +25,13 @@ public protocol OTDManagerProtocol: NSObject {
 
 public class OTDManager {
     let infoTypes: [OTDInfoType]
-    weak var dataSource: OTDManagerProtocol?
+    var dataSource: OTDManagerProtocol?
     public init(infoTypes: [OTDInfoType], dataSource:OTDManagerProtocol?) {
         self.infoTypes = infoTypes
         self.dataSource = dataSource
+    }
+    deinit {
+        print("deinit: OTDManager")
     }
     public func openDebugScreen(_ viewController:UIViewController) {
         var models = [OTDScreenCellModel]()
