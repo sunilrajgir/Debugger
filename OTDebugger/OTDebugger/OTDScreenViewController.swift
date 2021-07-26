@@ -76,14 +76,22 @@ extension OTDScreenViewController {
         case .appInfo:
             if let viewModel = dataSource?.basicInfo() {
                 let view = OTDInfoViewController(viewModel: viewModel)
-                self.navigationController?.pushViewController(view, animated: false)
+                self.present(view, animated: true, completion: nil)
             } else {
                 print("Provide data source for basic info ")
             }
-        case .translation:
-            dataSource?.openFlex()
+        case .enableTranslationKey:
+            self.dismiss(animated: false) {
+                self.dataSource?.handleTranslationKey(true)
+            }
+        case .disableTranslationKey:
+            self.dismiss(animated: false) {
+                self.dataSource?.handleTranslationKey(false)
+            }
         case .uIDebug:
-            dataSource?.openFlex()
+            self.dismiss(animated: false) {
+                self.dataSource?.openFlex()
+            }
         case .playerLog:
             print("Player logs")
         case .apiLog:
