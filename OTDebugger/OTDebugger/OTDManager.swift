@@ -17,7 +17,7 @@ public enum OTDInfoType: String {
     case consoleLog = "App console log"
 }
 
-public protocol OTDManagerProtocol: NSObject {
+public protocol OTDManagerProtocol {
     func basicInfo() -> OTDInfoViewControllerModel
     func openFlex()
     func showTranslationKey()
@@ -40,6 +40,6 @@ public class OTDManager {
             models.append(cellModel)
         }
         let debug = OTDScreenViewController(viewModel: OTDScreenViewControllerModel(cellModels: models),dataSource: dataSource)
-        viewController.navigationController?.pushViewController(debug, animated: false)
+        UIApplication.shared.keyWindow?.rootViewController?.present(debug, animated: true, completion: nil)
     }
 }
