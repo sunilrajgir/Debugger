@@ -99,11 +99,25 @@ extension OTDScreenViewController {
         case .uIDebug:
             print("Switch Action")
         case .playerLog:
-            print("Player logs")
+            if let log = dataSource?.playerLog() {
+                let view = OTDInfoViewController(viewModel: OTDInfoViewControllerModel(info: [OTDinfoModel(title: "Console Log", value: log)]))
+                self.present(view, animated: true, completion: nil)
+            } else {
+                print("Provide data source for basic info ")
+            }
         case .apiLog:
             print("api logs")
         case .consoleLog:
-            print("console logs")
+            if let log = dataSource?.consoleLog() {
+                let view = OTDInfoViewController(viewModel: OTDInfoViewControllerModel(info: [OTDinfoModel(title: "Console Log", value: log)]))
+                self.present(view, animated: true, completion: nil)
+            } else {
+                print("Provide data source for basic info ")
+            }
+        case .clearConsoleLog:
+            dataSource?.clearConsoleLog()
+        case .clearPlayerLog:
+            dataSource?.clearPlayerLog()
         }
     }
 }
