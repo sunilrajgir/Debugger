@@ -27,6 +27,7 @@ class OTDScreenViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneAction))
         setupTableView()
     }
 
@@ -37,6 +38,12 @@ class OTDScreenViewController: UIViewController {
         tableView.dataSource = self
         tableView.tableFooterView = UIView()
         view.addSubview(tableView)
+    }
+
+    @objc func doneAction() {
+        self.dismiss(animated: false) {
+            self.dataSource?.dismiss()
+        }
     }
 }
 
@@ -52,6 +59,13 @@ extension OTDScreenViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "OTDebugCell", for: indexPath) as? OTDebugCell {
             cell.configureCell(data: viewModel.cellModels[indexPath.row])
+            cell.onSwitchAction =  {(isOn,type) in
+                if type == .translation {
+                    self.dataSource?.handleTranslationKey(isOn)
+                } else if type == .uIDebug {
+                    self.dataSource?.openFlex(isOn)
+                }
+            }
             return cell
         }
         return UITableViewCell()
@@ -80,18 +94,10 @@ extension OTDScreenViewController {
             } else {
                 print("Provide data source for basic info ")
             }
-        case .enableTranslationKey:
-            self.dismiss(animated: false) {
-                self.dataSource?.handleTranslationKey(true)
-            }
-        case .disableTranslationKey:
-            self.dismiss(animated: false) {
-                self.dataSource?.handleTranslationKey(false)
-            }
+        case .translation:
+            print("Switch Action")
         case .uIDebug:
-            self.dismiss(animated: false) {
-                self.dataSource?.openFlex()
-            }
+            print("Switch Action")
         case .playerLog:
             print("Player logs")
         case .apiLog:

@@ -10,8 +10,7 @@ import UIKit
 
 public enum OTDInfoType: String {
     case appInfo = "App Info"
-    case enableTranslationKey = "Show Translation Key"
-    case disableTranslationKey = "Hide Translation Key"
+    case translation = "Show Translation Key"
     case uIDebug = "Flex Debug"
     case playerLog = "Player Log"
     case apiLog = "API Log"
@@ -20,8 +19,9 @@ public enum OTDInfoType: String {
 
 public protocol OTDManagerProtocol {
     func basicInfo() -> OTDInfoViewControllerModel
-    func openFlex()
+    func openFlex(_ enable: Bool)
     func handleTranslationKey(_ enable:Bool)
+    func dismiss()
 }
 
 public class OTDManager {
@@ -34,13 +34,15 @@ public class OTDManager {
     deinit {
         print("deinit: OTDManager")
     }
-    public func openDebugScreen(_ viewController:UIViewController) {
+    public func openDebugScreen() {
         var models = [OTDScreenCellModel]()
         for type in infoTypes {
             let cellModel = OTDScreenCellModel(type: type, title: type.rawValue)
             models.append(cellModel)
         }
-        let debug = OTDScreenViewController(viewModel: OTDScreenViewControllerModel(cellModels: models),dataSource: dataSource)
-        UIApplication.shared.keyWindow?.rootViewController?.present(debug, animated: true, completion: nil)
+        let debugViewController = OTDScreenViewController(viewModel: OTDScreenViewControllerModel(cellModels: models),dataSource: dataSource)
+        let nav = UINavigationController(rootViewController: debugViewController)
+        nav.modalPresentationStyle = .fullScreen
+        UIApplication.shared.keyWindow?.rootViewController?.present(nav, animated: true, completion: nil)
     }
 }
