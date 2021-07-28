@@ -108,16 +108,41 @@ extension OTDScreenViewController {
         case .apiLog:
             print("api logs")
         case .consoleLog:
-            if let log = dataSource?.consoleLog() {
-                let view = OTDInfoViewController(viewModel: OTDInfoViewControllerModel(info: [OTDinfoModel(title: "Console Log", value: log)]))
-                self.present(view, animated: true, completion: nil)
+            if let logFolders = dataSource?.consoleAllLogFolders() {
+                let alert = UIAlertController(title: "Log Folder", message: "Please Select Log Folder", preferredStyle: .actionSheet)
+                for folder in logFolders {
+                    alert.addAction(UIAlertAction(title: folder, style: .default , handler:{(UIAlertAction)in
+                        self.processSelectedFolder(folderName: folder)
+                    }))
+                }
+
+                self.present(alert, animated: true, completion: nil)
             } else {
                 print("Provide data source for basic info ")
             }
         case .clearConsoleLog:
-            dataSource?.clearConsoleLog()
+            print("Provide data source for basic info ")
         case .clearPlayerLog:
-            dataSource?.clearPlayerLog()
+            print("Provide data source for basic info ")
+        }
+    }
+
+    func processSelectedFolder(folderName: String) {
+        if let logFiles = dataSource?.consoleAllLogFilesIn(folderName) {
+            let alert = UIAlertController(title: "Log Files", message: "Please Select log file", preferredStyle: .actionSheet)
+            for file in logFiles {
+                alert.addAction(UIAlertAction(title: file, style: .default , handler:{(UIAlertAction)in
+                    self.openLogFile(fileName: file)
+                }))
+            }
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+
+    func openLogFile(fileName: String) {
+        if let log = dataSource?.consoleLogIn(fileName) {
+            let view = OTDInfoViewController(viewModel: OTDInfoViewControllerModel(info: [OTDinfoModel(title: "Console Log", value: log)]))
+            self.present(view, animated: true, completion: nil)
         }
     }
 }

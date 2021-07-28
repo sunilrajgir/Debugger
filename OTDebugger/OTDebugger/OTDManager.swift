@@ -23,10 +23,10 @@ public protocol OTDManagerProtocol {
     func basicInfo() -> OTDInfoViewControllerModel
     func openFlex(_ enable: Bool)
     func handleTranslationKey(_ enable:Bool)
-    func consoleLog() -> String
-    func clearPlayerLog()
+    func consoleAllLogFolders() -> [String]
+    func consoleAllLogFilesIn(_ folder: String) -> [String]
+    func consoleLogIn(_ file: String) -> String
     func playerLog() -> String
-    func clearConsoleLog()
     func dismiss()
 }
 
