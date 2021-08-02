@@ -15,6 +15,7 @@
 		4318D76326AAE50000877D3F /* OTDDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4318D76226AAE50000877D3F /* OTDDetailViewController.swift */; };
 		437CE9A726B7C60000F63296 /* OTDConsolLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437CE9A626B7C60000F63296 /* OTDConsolLogger.swift */; };
 		43822C4526A95BC500A4AF63 /* OTDebugger.h in Headers */ = {isa = PBXBuildFile; fileRef = 43822C4326A95BC500A4AF63 /* OTDebugger.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		438943E726B846B300633E8E /* OTDLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438943E626B846B300633E8E /* OTDLogger.swift */; };
 		43CE9D6E26B7F81F001CF260 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CE9D6D26B7F81F001CF260 /* Utility.swift */; };
 		43CE9D7226B7F8AB001CF260 /* OTDPlayerLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CE9D7126B7F8AB001CF260 /* OTDPlayerLogger.swift */; };
 /* End PBXBuildFile section */
@@ -30,6 +31,7 @@
 		43822C4026A95BC500A4AF63 /* OTDebugger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OTDebugger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43822C4326A95BC500A4AF63 /* OTDebugger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OTDebugger.h; sourceTree = "<group>"; };
 		43822C4426A95BC500A4AF63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		438943E626B846B300633E8E /* OTDLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTDLogger.swift; sourceTree = "<group>"; };
 		43CE9D6D26B7F81F001CF260 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		43CE9D7126B7F8AB001CF260 /* OTDPlayerLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTDPlayerLogger.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -91,6 +93,7 @@
 				4313CDAE26AAA4AE00D55229 /* OTDManager.swift */,
 				437CE9A626B7C60000F63296 /* OTDConsolLogger.swift */,
 				43CE9D7126B7F8AB001CF260 /* OTDPlayerLogger.swift */,
+				438943E626B846B300633E8E /* OTDLogger.swift */,
 			);
 			path = OTDebugger;
 			sourceTree = "<group>";
@@ -183,6 +186,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4318D75B26AACADB00877D3F /* OTDScreenViewControllerModel.swift in Sources */,
+				438943E726B846B300633E8E /* OTDLogger.swift in Sources */,
 				4313CDAF26AAA4AE00D55229 /* OTDManager.swift in Sources */,
 				4318D76326AAE50000877D3F /* OTDDetailViewController.swift in Sources */,
 				4318D76026AAD36E00877D3F /* OTDScreenCellModel.swift in Sources */,

@@ -98,7 +98,7 @@ extension OTDScreenViewController {
                 print("Provide data source for basic info ")
             }
         case .consoleLog:
-            let logFolders = OTDManager.shared.consoleLoger.allLogDirectory()
+            let logFolders = OTDManager.shared.logger.consoleLogger.allLogDirectory()
             let alert = UIAlertController(title: "Log Folder", message: "Please Select Log Folder", preferredStyle: .actionSheet)
             for folder in logFolders {
                 alert.addAction(UIAlertAction(title: folder, style: .default , handler:{(UIAlertAction)in
@@ -133,7 +133,7 @@ extension OTDScreenViewController {
     }
 
     func processSelectedFolder(folderName: String) {
-        let logFiles = OTDManager.shared.consoleLoger.allLogsInDirectory(name: folderName)
+        let logFiles = OTDManager.shared.logger.consoleLogger.allLogsInDirectory(name: folderName)
         let alert = UIAlertController(title: "Log Files", message: "Please Select log file", preferredStyle: .actionSheet)
         for file in logFiles {
             alert.addAction(UIAlertAction(title: file, style: .default , handler:{(UIAlertAction)in
@@ -145,9 +145,9 @@ extension OTDScreenViewController {
     }
 
     func openLogFile(fileName: String) {
-        if let log = OTDManager.shared.consoleLoger.logIn(fileName: fileName) {
+        if let log = OTDManager.shared.logger.consoleLogger.logIn(fileName: fileName) {
             let view = OTDDetailViewController(viewModel: OTDDetailViewControllerModel(info: [OTDDetailModel(title: "Console Log", value: log)]))
-            view.logFileName = fileName
+            view.logFilePath = OTDManager.shared.logger.consoleLogger.logFilePath(fileName: fileName)
             let nav = UINavigationController(rootViewController: view)
             nav.modalPresentationStyle = .fullScreen
             self.present(nav, animated: true, completion: nil)

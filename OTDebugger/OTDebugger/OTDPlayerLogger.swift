@@ -27,7 +27,7 @@ class OTDPlayerLogger {
     private func createLogDirectory() {
         let filemgr = FileManager.default
         let dirPaths = filemgr.urls(for: .documentDirectory, in: .userDomainMask)
-        logDirectory = dirPaths[0].appendingPathComponent("OTPlayer")
+        logDirectory = dirPaths[0].appendingPathComponent("OTPlayerLogs")
     }
 
     private func createFolder() {

@@ -38,7 +38,7 @@ final public class OTDManager {
     static public let shared = OTDManager()
     var infoTypes: [OTDInfoType]?
     var dataSource: OTDManagerProtocol?
-    var consoleLoger = OTDConsolLogger()
+    let logger = OTDLogger()
     public let bufferSize = 1
     var bufferLog = [Any]()
     public var isDebugViewOpened = false
@@ -59,23 +59,6 @@ final public class OTDManager {
     }
 
     public func appendInConsoleLogFile(_ items: Any..., separator: String = " ", terminator: String = "\n", isInclude:Bool = true, logType: OTDLogType) {
-        guard isInclude else {
-            return
-        }
-        if logType == .console {
-            DispatchQueue(label: "Serail Queue").async {
-                self.bufferLog.append(items)
-                if self.bufferLog.count >= self.bufferSize {
-                    let logs = self.bufferLog.reduce("") { (interimResult, item) -> String in
-                        return "\(interimResult)" + "\(item)"
-                    }
-                    self.consoleLoger.appendInConsoleLogFile(logs)
-                    self.bufferLog.removeAll()
-                }
-            }
-        } else if logType == .player {
-
-        }
-
+        logger.appendInConsoleLogFile(items, separator: separator, terminator: terminator, isInclude: isInclude, logType: logType)
     }
 }

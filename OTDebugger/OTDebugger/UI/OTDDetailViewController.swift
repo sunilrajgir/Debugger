@@ -26,7 +26,7 @@ public struct OTDDetailModel {
 class OTDDetailViewController: UIViewController {
     private var viewModel: OTDDetailViewControllerModel!
     private var textView = UITextView()
-    public var logFileName = ""
+    public var logFilePath: URL?
 
     init(viewModel: OTDDetailViewControllerModel) {
         self.viewModel = viewModel
@@ -74,7 +74,12 @@ class OTDDetailViewController: UIViewController {
     }
 
     @objc func shareAction() {
-        let items = [textView.text]
+        let items: [Any]
+        if let fileUrl = logFilePath {
+            items = [fileUrl]
+        } else {
+            items = [textView.text as Any]
+        }
         let activityViewController = UIActivityViewController(activityItems: items, applicationActivities: nil)
         self.present(activityViewController, animated: true)
     }

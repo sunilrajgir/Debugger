@@ -12,8 +12,8 @@ class OTDConsolLogger {
     var logDirectory: URL?
     var currentFolder: URL?
     var currentLogFile: URL?
-    private var logs = ""
-
+    var inMemoryLogs = [Any]()
+    var bufferSize = 50
     init(){
         setupLogFolder()
     }
@@ -27,7 +27,7 @@ class OTDConsolLogger {
     private func createLogDirectory() {
         let filemgr = FileManager.default
         let dirPaths = filemgr.urls(for: .documentDirectory, in: .userDomainMask)
-        logDirectory = dirPaths[0].appendingPathComponent("OTLogs")
+        logDirectory = dirPaths[0].appendingPathComponent("OTConsoleLogs")
     }
 
     private func createFolder() {
@@ -47,10 +47,6 @@ class OTDConsolLogger {
         let url = currentFolder?.appendingPathComponent("\(currentTime).txt")
         currentLogFile = url
         try? "\(Date())".appendToURL(fileURL: currentLogFile!)
-    }
-
-    public func getCurrentLogFile() -> URL? {
-        return currentLogFile
     }
 
     func allLogDirectory() -> [String] {
@@ -81,13 +77,23 @@ class OTDConsolLogger {
     }
 
     func logFilePath(fileName:String) -> URL {
+        dumpInFile()
         return currentFolder!.appendingPathComponent(fileName)
     }
 
     func appendInConsoleLogFile(_ items: Any..., separator: String = " ", terminator: String = "\n") {
-        if logDirectory == nil {
-            setupLogFolder()
+        DispatchQueue.global(qos: .default).async(flags: .barrier) {
+            if self.inMemoryLogs.count >= self.bufferSize {
+                self.dumpInFile()
+            }
         }
-        try? "\(items)".appendToURL(fileURL: currentLogFile!)
+    }
+
+    private func dumpInFile() {
+        let logs = self.inMemoryLogs.reduce("") { (interimResult, log) -> String in
+            return "\(interimResult)" + "\(log)"
+        }
+        try? logs.appendToURL(fileURL: self.currentLogFile!)
+        self.inMemoryLogs.removeAll()
     }
 }
