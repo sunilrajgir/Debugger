@@ -41,6 +41,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		437CE9A926B7CDCD00F63296 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				4318D75426AAC0D800877D3F /* OTDScreenViewController.swift */,
+				4318D75726AAC98D00877D3F /* OTDebugCell.swift */,
+				4318D75A26AACADB00877D3F /* OTDScreenViewControllerModel.swift */,
+				4318D75F26AAD36E00877D3F /* OTDScreenCellModel.swift */,
+				4318D76226AAE50000877D3F /* OTDInfoViewController.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		43822C3626A95BC500A4AF63 = {
 			isa = PBXGroup;
 			children = (
@@ -60,14 +72,10 @@
 		43822C4226A95BC500A4AF63 /* OTDebugger */ = {
 			isa = PBXGroup;
 			children = (
+				437CE9A926B7CDCD00F63296 /* UI */,
 				43822C4326A95BC500A4AF63 /* OTDebugger.h */,
 				43822C4426A95BC500A4AF63 /* Info.plist */,
 				4313CDAE26AAA4AE00D55229 /* OTDManager.swift */,
-				4318D75426AAC0D800877D3F /* OTDScreenViewController.swift */,
-				4318D75726AAC98D00877D3F /* OTDebugCell.swift */,
-				4318D75A26AACADB00877D3F /* OTDScreenViewControllerModel.swift */,
-				4318D75F26AAD36E00877D3F /* OTDScreenCellModel.swift */,
-				4318D76226AAE50000877D3F /* OTDInfoViewController.swift */,
 				437CE9A626B7C60000F63296 /* OTDConsolLogger.swift */,
 			);
 			path = OTDebugger;

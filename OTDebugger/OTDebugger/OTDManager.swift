@@ -30,12 +30,13 @@ public protocol OTDManagerProtocol {
     func dismiss()
 }
 
-public class OTDManager {
+final public class OTDManager {
     static public let shared = OTDManager()
     private init() {
     }
     var infoTypes: [OTDInfoType]?
     var dataSource: OTDManagerProtocol?
+    private var consoleLoger = OTDConsolLogger()
     public func configure(infoTypes: [OTDInfoType], dataSource:OTDManagerProtocol?) {
         self.infoTypes = infoTypes
         self.dataSource = dataSource
@@ -46,3 +47,10 @@ public class OTDManager {
         }
     }
 }
+
+extension OTDManager {
+    func appendInConsoleLogFile(_ items: Any..., separator: String = " ", terminator: String = "\n") {
+        self.consoleLoger.appendInConsoleLogFile(items, separator: separator, terminator: terminator)
+    }
+}
+

@@ -8,14 +8,13 @@
 import Foundation
 
 
-final class OTDConsolLogger {
-    static public var shared = OTDConsolLogger()
+class OTDConsolLogger {
     private var logDirectory: URL?
     private var currentFolder: URL?
     private var currentLogFile: URL?
     private var logs = ""
 
-    private init(){
+    init(){
         createLogDirectory()
         createFolder()
         createCurrentLogFile()
