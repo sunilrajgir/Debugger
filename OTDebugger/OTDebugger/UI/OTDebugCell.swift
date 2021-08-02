@@ -50,16 +50,15 @@ class OTDebugCell: UITableViewCell {
     }
 
     @objc func switchValueChanged(_ sender: UISwitch!) {
-        if (sender.isOn){
-            self.onSwitchAction?(true, data!.type)
-        }else{
-            self.onSwitchAction?(false, data!.type)
+        if self.data?.type == .translation {
+            OTDManager.shared.isTranslationKeyEnabled = sender.isOn
         }
     }
 
     func configureCell(data: OTDScreenCellModel) {
         self.data = data
-        if data.type == .translation || data.type == .uIDebug {
+        switchButton.isOn = OTDManager.shared.isTranslationKeyEnabled
+        if data.type == .translation {
             self.accessoryType = .none
             switchButton.isHidden = false
         } else {

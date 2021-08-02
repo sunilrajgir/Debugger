@@ -16,35 +16,38 @@ public enum OTDInfoType: String {
     case clearConsoleLog = "Clear App console log"
     case playerLog = "Player Log"
     case clearPlayerLog = "Clear Player Log"
-    case apiLog = "API Log"
 }
 
 public protocol OTDManagerProtocol {
     func basicInfo() -> OTDDetailViewControllerModel
-    func openFlex(_ enable: Bool)
+    func openFlex()
     func handleTranslationKey(_ enable:Bool)
-    func consoleAllLogFolders() -> [String]
-    func consoleAllLogFilesIn(_ folder: String) -> [String]
-    func consoleLogIn(_ file: String) -> String
     func playerLog() -> String
     func dismiss()
 }
 
 final public class OTDManager {
     static public let shared = OTDManager()
-    public let bufferSize = 50
-    private init() {
-    }
     var infoTypes: [OTDInfoType]?
     var dataSource: OTDManagerProtocol?
     var consoleLoger = OTDConsolLogger()
+    public let bufferSize = 50
     var bufferLog = [Any]()
+    public var isDebugViewOpened = false
+    public var isTranslationKeyEnabled = false
+
+    private init() {
+    }
+
     public func configure(infoTypes: [OTDInfoType], dataSource:OTDManagerProtocol?) {
         self.infoTypes = infoTypes
         self.dataSource = dataSource
     }
     public func openDebugScreen() {
-        OTDScreenViewController.openDebugScreen()
+        if !isDebugViewOpened {
+            isDebugViewOpened = true
+            OTDScreenViewController.openDebugScreen()
+        }
     }
 
     public func appendInConsoleLogFile(_ items: Any..., separator: String = " ", terminator: String = "\n", isInclude:Bool = true) {

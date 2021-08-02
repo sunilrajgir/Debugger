@@ -40,6 +40,7 @@ class OTDScreenViewController: UIViewController {
 
     @objc func doneAction() {
         self.dismiss(animated: false) {
+            OTDManager.shared.isDebugViewOpened = false
             OTDManager.shared.dataSource?.dismiss()
         }
     }
@@ -57,13 +58,6 @@ extension OTDScreenViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "OTDebugCell", for: indexPath) as? OTDebugCell {
             cell.configureCell(data: viewModel.cellModels[indexPath.row])
-            cell.onSwitchAction =  {(isOn,type) in
-                if type == .translation {
-                    OTDManager.shared.dataSource?.handleTranslationKey(isOn)
-                } else if type == .uIDebug {
-                    OTDManager.shared.dataSource?.openFlex(isOn)
-                }
-            }
             return cell
         }
         return UITableViewCell()
@@ -95,7 +89,7 @@ extension OTDScreenViewController {
         case .translation:
             print("Switch Action")
         case .uIDebug:
-            print("Switch Action")
+            OTDManager.shared.dataSource?.openFlex()
         case .playerLog:
             if let log = OTDManager.shared.dataSource?.playerLog() {
                 let view = OTDDetailViewController(viewModel: OTDDetailViewControllerModel(info: [OTDDetailModel(title: "Console Log", value: log)]))
@@ -103,8 +97,6 @@ extension OTDScreenViewController {
             } else {
                 print("Provide data source for basic info ")
             }
-        case .apiLog:
-            print("api logs")
         case .consoleLog:
             let logFolders = OTDManager.shared.consoleLoger.allLogDirectory()
             let alert = UIAlertController(title: "Log Folder", message: "Please Select Log Folder", preferredStyle: .actionSheet)
