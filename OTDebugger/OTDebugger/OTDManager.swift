@@ -13,6 +13,8 @@ public enum OTDInfoType: String {
     case translation = "Show Translation Key"
     case uIDebug = "Flex Debug"
     case consoleLog = "App console log"
+    case cmsConfig = "CMS Config"
+    case translationDiff = "Translation Diff"
     case clearConsoleLog = "Clear App console log"
     case playerLog = "Player Log"
     case clearPlayerLog = "Clear Player Log"
@@ -27,6 +29,8 @@ public protocol OTDManagerProtocol {
     func basicInfo() -> OTDDetailViewControllerModel
     func openFlex()
     func playerLog() -> String
+    func cmsConfigLog() -> String
+    func translationDiff() -> String
     func dismiss()
 }
 

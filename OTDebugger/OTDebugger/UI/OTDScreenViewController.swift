@@ -91,6 +91,8 @@ extension OTDScreenViewController {
         case .playerLog:
             if let log = OTDManager.shared.dataSource?.playerLog() {
                 let view = OTDDetailViewController(viewModel: OTDDetailViewControllerModel(info: [OTDDetailModel(title: "Console Log", value: log)]))
+                let nav = UINavigationController(rootViewController: view)
+                nav.modalPresentationStyle = .fullScreen
                 self.present(view, animated: true, completion: nil)
             } else {
                 print("Provide data source for basic info ")
@@ -105,6 +107,24 @@ extension OTDScreenViewController {
             }
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel , handler:nil))
             self.present(alert, animated: true, completion: nil)
+        case .cmsConfig:
+            if let log = OTDManager.shared.dataSource?.playerLog() {
+                let view = OTDDetailViewController(viewModel: OTDDetailViewControllerModel(info: [OTDDetailModel(title: "Console Log", value: log)]))
+                let nav = UINavigationController(rootViewController: view)
+                nav.modalPresentationStyle = .fullScreen
+                self.present(nav, animated: true, completion: nil)
+            } else {
+                print("Provide data source for basic info ")
+            }
+        case .translationDiff:
+            if let log = OTDManager.shared.dataSource?.playerLog() {
+                let view = OTDDetailViewController(viewModel: OTDDetailViewControllerModel(info: [OTDDetailModel(title: "Console Log", value: log)]))
+                let nav = UINavigationController(rootViewController: view)
+                nav.modalPresentationStyle = .fullScreen
+                self.present(nav, animated: true, completion: nil)
+            } else {
+                print("Provide data source for basic info ")
+            }
         case .clearConsoleLog:
             self.clearConsoleLog()
         case .clearPlayerLog:

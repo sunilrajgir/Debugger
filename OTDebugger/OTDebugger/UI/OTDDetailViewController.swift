@@ -48,9 +48,9 @@ class OTDDetailViewController: UIViewController {
 
     private func addNavigationButtons() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneAction))
-        if !logFileName.isEmpty {
+//        if !logFileName.isEmpty {
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Share", style: .plain, target: self, action: #selector(shareAction))
-        }
+//        }
     }
 
     private func bindData() {
@@ -74,7 +74,7 @@ class OTDDetailViewController: UIViewController {
     }
 
     @objc func shareAction() {
-        let items = [OTDManager.shared.consoleLoger.logFilePath(fileName: logFileName)]
+        let items = [textView.text]
         let activityViewController = UIActivityViewController(activityItems: items, applicationActivities: nil)
         self.present(activityViewController, animated: true)
     }
