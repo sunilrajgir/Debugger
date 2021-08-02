@@ -32,6 +32,7 @@ public protocol OTDManagerProtocol {
     func cmsConfigLog() -> URL?
     func translationDiff() -> URL?
     func dismiss()
+    func handleTranslationKey(isEnabled:Bool)
 }
 
 final public class OTDManager {
@@ -58,5 +59,9 @@ final public class OTDManager {
 
     public func appendInConsoleLogFile(_ items: Any..., separator: String = " ", terminator: String = "\n", isInclude:Bool = true, logType: OTDLogType) {
         logger.appendInConsoleLogFile(items, separator: separator, terminator: terminator, isInclude: isInclude, logType: logType)
+    }
+
+    public func dismissDebugger() {
+
     }
 }

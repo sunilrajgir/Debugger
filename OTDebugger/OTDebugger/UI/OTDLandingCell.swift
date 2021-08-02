@@ -51,6 +51,7 @@ class OTDLandingCell: UITableViewCell {
 
     @objc func switchValueChanged(_ sender: UISwitch!) {
         if self.data?.type == .translation {
+            OTDManager.shared.dataSource?.handleTranslationKey(isEnabled: sender.isOn)
             OTDManager.shared.isTranslationKeyEnabled = sender.isOn
         }
     }
