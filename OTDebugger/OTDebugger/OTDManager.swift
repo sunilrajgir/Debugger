@@ -36,21 +36,16 @@ final public class OTDManager {
     }
     var infoTypes: [OTDInfoType]?
     var dataSource: OTDManagerProtocol?
-    private var consoleLoger = OTDConsolLogger()
+    var consoleLoger = OTDConsolLogger()
     public func configure(infoTypes: [OTDInfoType], dataSource:OTDManagerProtocol?) {
         self.infoTypes = infoTypes
         self.dataSource = dataSource
     }
     public func openDebugScreen() {
-        if let infoType = infoTypes {
-            OTDScreenViewController.openDebugScreen(infoTypes: infoType)
-        }
+        OTDScreenViewController.openDebugScreen()
     }
-}
 
-extension OTDManager {
-    func appendInConsoleLogFile(_ items: Any..., separator: String = " ", terminator: String = "\n") {
+    public func appendInConsoleLogFile(_ items: Any..., separator: String = " ", terminator: String = "\n") {
         self.consoleLoger.appendInConsoleLogFile(items, separator: separator, terminator: terminator)
     }
 }
-

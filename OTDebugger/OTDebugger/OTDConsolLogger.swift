@@ -9,9 +9,9 @@ import Foundation
 
 
 class OTDConsolLogger {
-    private var logDirectory: URL?
-    private var currentFolder: URL?
-    private var currentLogFile: URL?
+    var logDirectory: URL?
+    var currentFolder: URL?
+    var currentLogFile: URL?
     private var logs = ""
 
     init(){
@@ -49,7 +49,7 @@ class OTDConsolLogger {
         return currentLogFile
     }
 
-    public func allLogDirectory() -> [String] {
+    func allLogDirectory() -> [String] {
         if let allContents = try? FileManager.default.contentsOfDirectory(atPath:logDirectory!.path) {
             return allContents
         }
@@ -67,6 +67,10 @@ class OTDConsolLogger {
     func logIn(fileName:String) -> String? {
         let fileUrl = currentFolder!.appendingPathComponent(fileName)
         return try? String(contentsOf:fileUrl, encoding: String.Encoding.utf8)
+    }
+
+    func logFilePath(fileName:String) -> String {
+        return currentFolder!.appendingPathComponent(fileName).path
     }
 
     func appendInConsoleLogFile(_ items: Any..., separator: String = " ", terminator: String = "\n") {

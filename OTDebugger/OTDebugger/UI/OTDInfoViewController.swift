@@ -26,6 +26,7 @@ public struct OTDinfoModel {
 class OTDInfoViewController: UIViewController {
     private var viewModel: OTDInfoViewControllerModel!
     private var textView = UITextView()
+    public var logFileName = ""
 
     init(viewModel: OTDInfoViewControllerModel) {
         self.viewModel = viewModel
@@ -71,11 +72,9 @@ class OTDInfoViewController: UIViewController {
     }
 
     @objc func shareAction() {
-        let items = ["This app is my favorite"]
+        let items = [OTDManager.shared.consoleLoger.logFilePath(fileName: logFileName)]
         let activityViewController = UIActivityViewController(activityItems: items, applicationActivities: nil)
-        self.present(activityViewController, animated: true) {
-
-        }
+        self.present(activityViewController, animated: true)
     }
 }
 

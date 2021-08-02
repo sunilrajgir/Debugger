@@ -106,18 +106,14 @@ extension OTDScreenViewController {
         case .apiLog:
             print("api logs")
         case .consoleLog:
-            if let logFolders = OTDManager.shared.dataSource?.consoleAllLogFolders() {
-                let alert = UIAlertController(title: "Log Folder", message: "Please Select Log Folder", preferredStyle: .actionSheet)
-                for folder in logFolders {
-                    alert.addAction(UIAlertAction(title: folder, style: .default , handler:{(UIAlertAction)in
-                        self.processSelectedFolder(folderName: folder)
-                    }))
-                }
-
-                self.present(alert, animated: true, completion: nil)
-            } else {
-                print("Provide data source for basic info ")
+            let logFolders = OTDManager.shared.consoleLoger.allLogDirectory()
+            let alert = UIAlertController(title: "Log Folder", message: "Please Select Log Folder", preferredStyle: .actionSheet)
+            for folder in logFolders {
+                alert.addAction(UIAlertAction(title: folder, style: .default , handler:{(UIAlertAction)in
+                    self.processSelectedFolder(folderName: folder)
+                }))
             }
+            self.present(alert, animated: true, completion: nil)
         case .clearConsoleLog:
             print("Provide data source for basic info ")
         case .clearPlayerLog:
@@ -126,20 +122,20 @@ extension OTDScreenViewController {
     }
 
     func processSelectedFolder(folderName: String) {
-        if let logFiles = OTDManager.shared.dataSource?.consoleAllLogFilesIn(folderName) {
-            let alert = UIAlertController(title: "Log Files", message: "Please Select log file", preferredStyle: .actionSheet)
-            for file in logFiles {
-                alert.addAction(UIAlertAction(title: file, style: .default , handler:{(UIAlertAction)in
-                    self.openLogFile(fileName: file)
-                }))
-            }
-            self.present(alert, animated: true, completion: nil)
+        let logFiles = OTDManager.shared.consoleLoger.allLogsInDirectory(name: folderName)
+        let alert = UIAlertController(title: "Log Files", message: "Please Select log file", preferredStyle: .actionSheet)
+        for file in logFiles {
+            alert.addAction(UIAlertAction(title: file, style: .default , handler:{(UIAlertAction)in
+                self.openLogFile(fileName: file)
+            }))
         }
+        self.present(alert, animated: true, completion: nil)
     }
 
     func openLogFile(fileName: String) {
-        if let log = OTDManager.shared.dataSource?.consoleLogIn(fileName) {
+        if let log = OTDManager.shared.consoleLoger.logIn(fileName: fileName) {
             let view = OTDInfoViewController(viewModel: OTDInfoViewControllerModel(info: [OTDinfoModel(title: "Console Log", value: log)]))
+            view.logFileName = fileName
             let nav = UINavigationController(rootViewController: view)
             nav.modalPresentationStyle = .fullScreen
             self.present(nav, animated: true, completion: nil)
@@ -148,15 +144,17 @@ extension OTDScreenViewController {
 }
 
 extension OTDScreenViewController {
-    class func openDebugScreen(infoTypes:[OTDInfoType]) {
+    class func openDebugScreen() {
         var models = [OTDScreenCellModel]()
-        for type in infoTypes {
-            let cellModel = OTDScreenCellModel(type: type, title: type.rawValue)
-            models.append(cellModel)
+        if let infoTypes = OTDManager.shared.infoTypes {
+            for type in infoTypes {
+                let cellModel = OTDScreenCellModel(type: type, title: type.rawValue)
+                models.append(cellModel)
+            }
+            let debugViewController = OTDScreenViewController(viewModel: OTDScreenViewControllerModel(cellModels: models))
+            let nav = UINavigationController(rootViewController: debugViewController)
+            nav.modalPresentationStyle = .fullScreen
+            UIApplication.shared.keyWindow?.rootViewController?.present(nav, animated: true, completion: nil)
         }
-        let debugViewController = OTDScreenViewController(viewModel: OTDScreenViewControllerModel(cellModels: models))
-        let nav = UINavigationController(rootViewController: debugViewController)
-        nav.modalPresentationStyle = .fullScreen
-        UIApplication.shared.keyWindow?.rootViewController?.present(nav, animated: true, completion: nil)
     }
 }
