@@ -32,11 +32,13 @@ public protocol OTDManagerProtocol {
 
 final public class OTDManager {
     static public let shared = OTDManager()
+    private let bufferSize = 50
     private init() {
     }
     var infoTypes: [OTDInfoType]?
     var dataSource: OTDManagerProtocol?
     var consoleLoger = OTDConsolLogger()
+    var bufferLog = [Any]()
     public func configure(infoTypes: [OTDInfoType], dataSource:OTDManagerProtocol?) {
         self.infoTypes = infoTypes
         self.dataSource = dataSource
@@ -46,6 +48,15 @@ final public class OTDManager {
     }
 
     public func appendInConsoleLogFile(_ items: Any..., separator: String = " ", terminator: String = "\n") {
-        self.consoleLoger.appendInConsoleLogFile(items, separator: separator, terminator: terminator)
+        DispatchQueue(label: "Serail Queue").async {
+            self.bufferLog.append(items)
+            if self.bufferLog.count >= self.bufferSize {
+                let logs = self.bufferLog.reduce("") { (interimResult, item) -> String in
+                    return "\(interimResult)" + "\(item)"
+                }
+                self.consoleLoger.appendInConsoleLogFile(logs)
+                self.bufferLog.removeAll()
+            }
+        }
     }
 }
