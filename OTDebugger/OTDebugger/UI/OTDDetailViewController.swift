@@ -48,7 +48,7 @@ class OTDDetailViewController: UIViewController {
 
     private func addNavigationButtons() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneAction))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Share", style: .plain, target: self, action: #selector(doneAction))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Share", style: .plain, target: self, action: #selector(shareAction))
     }
 
     private func bindData() {

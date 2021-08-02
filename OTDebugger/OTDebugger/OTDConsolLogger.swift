@@ -69,8 +69,8 @@ class OTDConsolLogger {
         return try? String(contentsOf:fileUrl, encoding: String.Encoding.utf8)
     }
 
-    func logFilePath(fileName:String) -> String {
-        return currentFolder!.appendingPathComponent(fileName).path
+    func logFilePath(fileName:String) -> URL {
+        return currentFolder!.appendingPathComponent(fileName)
     }
 
     func appendInConsoleLogFile(_ items: Any..., separator: String = " ", terminator: String = "\n") {
