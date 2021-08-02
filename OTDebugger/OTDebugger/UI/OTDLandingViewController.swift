@@ -79,8 +79,7 @@ extension OTDLandingViewController {
         switch cellModel.type {
         case .appInfo:
             if let viewModel = OTDManager.shared.dataSource?.basicInfo() {
-                let view = OTDDetailViewController(viewModel: viewModel)
-                self.present(view, animated: true, completion: nil)
+                openDetail(detailModel: viewModel)
             } else {
                 print("Provide data source for basic info ")
             }
@@ -89,11 +88,8 @@ extension OTDLandingViewController {
         case .uIDebug:
             OTDManager.shared.dataSource?.openFlex()
         case .playerLog:
-            if let log = OTDManager.shared.dataSource?.playerLog() {
-                let view = OTDDetailViewController(viewModel: OTDDetailViewControllerModel(info: [OTDDetailModel(title: "Console Log", value: log)]))
-                let nav = UINavigationController(rootViewController: view)
-                nav.modalPresentationStyle = .fullScreen
-                self.present(view, animated: true, completion: nil)
+            if let url = OTDManager.shared.dataSource?.playerLog() {
+                openDetail(title: "Player Log", val: " ", url: url)
             } else {
                 print("Provide data source for basic info ")
             }
@@ -108,20 +104,14 @@ extension OTDLandingViewController {
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel , handler:nil))
             self.present(alert, animated: true, completion: nil)
         case .cmsConfig:
-            if let log = OTDManager.shared.dataSource?.cmsConfigLog() {
-                let view = OTDDetailViewController(viewModel: OTDDetailViewControllerModel(info: [OTDDetailModel(title: "Console Log", value: log)]))
-                let nav = UINavigationController(rootViewController: view)
-                nav.modalPresentationStyle = .fullScreen
-                self.present(nav, animated: true, completion: nil)
+            if let url = OTDManager.shared.dataSource?.cmsConfigLog() {
+                openDetail(title: "Player Log", val: " ", url: url)
             } else {
                 print("Provide data source for basic info ")
             }
         case .translationDiff:
-            if let log = OTDManager.shared.dataSource?.translationDiff() {
-                let view = OTDDetailViewController(viewModel: OTDDetailViewControllerModel(info: [OTDDetailModel(title: "Console Log", value: log)]))
-                let nav = UINavigationController(rootViewController: view)
-                nav.modalPresentationStyle = .fullScreen
-                self.present(nav, animated: true, completion: nil)
+            if let url = OTDManager.shared.dataSource?.translationDiff() {
+                openDetail(title: "translation Diff", val: " ", url: url)
             } else {
                 print("Provide data source for basic info ")
             }
@@ -132,7 +122,22 @@ extension OTDLandingViewController {
         }
     }
 
-    func processSelectedFolder(folderName: String) {
+    private func openDetail(title:String, val:String, url: URL) {
+        let detailModel = OTDDetailViewControllerModel(info: [OTDDetailModel(title: title, value: val)], url: url)
+        let view = OTDDetailViewController(viewModel: detailModel)
+        let nav = UINavigationController(rootViewController: view)
+        nav.modalPresentationStyle = .fullScreen
+        self.present(nav, animated: true, completion: nil)
+    }
+
+    private func openDetail(detailModel:OTDDetailViewControllerModel) {
+        let view = OTDDetailViewController(viewModel: detailModel)
+        let nav = UINavigationController(rootViewController: view)
+        nav.modalPresentationStyle = .fullScreen
+        self.present(nav, animated: true, completion: nil)
+    }
+
+    private func processSelectedFolder(folderName: String) {
         let logFiles = OTDManager.shared.logger.consoleLogger.allLogsInDirectory(name: folderName)
         let alert = UIAlertController(title: "Log Files", message: "Please Select log file", preferredStyle: .actionSheet)
         for file in logFiles {
@@ -144,14 +149,9 @@ extension OTDLandingViewController {
         self.present(alert, animated: true, completion: nil)
     }
 
-    func openLogFile(fileName: String) {
-        if let log = OTDManager.shared.logger.consoleLogger.logIn(fileName: fileName) {
-            let view = OTDDetailViewController(viewModel: OTDDetailViewControllerModel(info: [OTDDetailModel(title: "Console Log", value: log)]))
-            view.logFilePath = OTDManager.shared.logger.consoleLogger.logFilePath(fileName: fileName)
-            let nav = UINavigationController(rootViewController: view)
-            nav.modalPresentationStyle = .fullScreen
-            self.present(nav, animated: true, completion: nil)
-        }
+    private func openLogFile(fileName: String) {
+        let url = OTDManager.shared.logger.consoleLogger.logFilePath(fileName: fileName)
+        openDetail(title: "Console Log", val: "", url: url)
     }
 
     func clearPlayerLog() {

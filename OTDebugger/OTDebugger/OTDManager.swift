@@ -28,9 +28,9 @@ public enum OTDLogType: String {
 public protocol OTDManagerProtocol {
     func basicInfo() -> OTDDetailViewControllerModel
     func openFlex()
-    func playerLog() -> String
-    func cmsConfigLog() -> String
-    func translationDiff() -> String
+    func playerLog() -> URL?
+    func cmsConfigLog() -> URL?
+    func translationDiff() -> URL?
     func dismiss()
 }
 

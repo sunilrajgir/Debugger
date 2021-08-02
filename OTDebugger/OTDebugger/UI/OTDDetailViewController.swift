@@ -8,9 +8,11 @@
 import UIKit
 
 public struct OTDDetailViewControllerModel {
-    let info : [OTDDetailModel]
-    public init(info:[OTDDetailModel]) {
+    let info: [OTDDetailModel]
+    let url: URL?
+    public init(info:[OTDDetailModel], url:URL?) {
         self.info = info
+        self.url = url
     }
 }
 
@@ -26,7 +28,6 @@ public struct OTDDetailModel {
 class OTDDetailViewController: UIViewController {
     private var viewModel: OTDDetailViewControllerModel!
     private var textView = UITextView()
-    public var logFilePath: URL?
 
     init(viewModel: OTDDetailViewControllerModel) {
         self.viewModel = viewModel
@@ -48,24 +49,34 @@ class OTDDetailViewController: UIViewController {
 
     private func addNavigationButtons() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneAction))
-//        if !logFileName.isEmpty {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Share", style: .plain, target: self, action: #selector(shareAction))
-//        }
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Share", style: .plain, target: self, action: #selector(shareAction))
     }
 
     private func bindData() {
         let attributeString = NSMutableAttributedString()
-        for data in viewModel.info {
-            let title = NSMutableAttributedString(string: "\(data.title): ")
-            title.addAttribute(.foregroundColor, value: UIColor.black, range: NSMakeRange(0, title.length))
-            title.addAttribute(.font, value: UIFont.systemFont(ofSize: 16, weight: .bold), range: NSMakeRange(0, title.length))
-            let value = NSMutableAttributedString(string: "\(data.value) \n\n")
-            value.addAttribute(.foregroundColor, value: UIColor.darkGray, range: NSMakeRange(0, value.length))
-            value.addAttribute(.font, value: UIFont.systemFont(ofSize: 16, weight: .medium), range: NSMakeRange(0, value.length))
-            title.append(value)
-            attributeString.append(title)
+        if let fileUrl = viewModel.url {
+            if let val = try? String(contentsOf:fileUrl, encoding: String.Encoding.utf8) {
+                attributeString.append(transformData(title: fileUrl.path, value: val))
+            } else {
+                attributeString.append(transformData(title: fileUrl.path, value: "No content found"))
+            }
+        } else {
+            for data in viewModel.info {
+                attributeString.append(transformData(title: data.title, value: data.value))
+            }
         }
         textView.attributedText = attributeString
+    }
+
+    private func transformData(title: String, value: String) -> NSAttributedString {
+        let title = NSMutableAttributedString(string: "\(title): ")
+        title.addAttribute(.foregroundColor, value: UIColor.black, range: NSMakeRange(0, title.length))
+        title.addAttribute(.font, value: UIFont.systemFont(ofSize: 16, weight: .bold), range: NSMakeRange(0, title.length))
+        let value = NSMutableAttributedString(string: "\(value) \n\n")
+        value.addAttribute(.foregroundColor, value: UIColor.darkGray, range: NSMakeRange(0, value.length))
+        value.addAttribute(.font, value: UIFont.systemFont(ofSize: 16, weight: .medium), range: NSMakeRange(0, value.length))
+        title.append(value)
+        return title
     }
 
     @objc func doneAction() {
@@ -75,7 +86,7 @@ class OTDDetailViewController: UIViewController {
 
     @objc func shareAction() {
         let items: [Any]
-        if let fileUrl = logFilePath {
+        if let fileUrl = viewModel.url {
             items = [fileUrl]
         } else {
             items = [textView.text as Any]
