@@ -23,7 +23,7 @@ public struct OTDinfoModel {
     }
 }
 
-class OTDInfoViewController: UIViewController {
+class OTDDetailViewController: UIViewController {
     private var viewModel: OTDInfoViewControllerModel!
     private var textView = UITextView()
     public var logFileName = ""
