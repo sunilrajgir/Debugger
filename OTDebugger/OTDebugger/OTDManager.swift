@@ -20,7 +20,7 @@ public enum OTDInfoType: String {
 }
 
 public protocol OTDManagerProtocol {
-    func basicInfo() -> OTDInfoViewControllerModel
+    func basicInfo() -> OTDDetailViewControllerModel
     func openFlex(_ enable: Bool)
     func handleTranslationKey(_ enable:Bool)
     func consoleAllLogFolders() -> [String]

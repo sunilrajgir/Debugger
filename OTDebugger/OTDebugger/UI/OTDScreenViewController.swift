@@ -98,7 +98,7 @@ extension OTDScreenViewController {
             print("Switch Action")
         case .playerLog:
             if let log = OTDManager.shared.dataSource?.playerLog() {
-                let view = OTDDetailViewController(viewModel: OTDInfoViewControllerModel(info: [OTDinfoModel(title: "Console Log", value: log)]))
+                let view = OTDDetailViewController(viewModel: OTDDetailViewControllerModel(info: [OTDDetailModel(title: "Console Log", value: log)]))
                 self.present(view, animated: true, completion: nil)
             } else {
                 print("Provide data source for basic info ")
@@ -136,7 +136,7 @@ extension OTDScreenViewController {
 
     func openLogFile(fileName: String) {
         if let log = OTDManager.shared.consoleLoger.logIn(fileName: fileName) {
-            let view = OTDDetailViewController(viewModel: OTDInfoViewControllerModel(info: [OTDinfoModel(title: "Console Log", value: log)]))
+            let view = OTDDetailViewController(viewModel: OTDDetailViewControllerModel(info: [OTDDetailModel(title: "Console Log", value: log)]))
             view.logFileName = fileName
             let nav = UINavigationController(rootViewController: view)
             nav.modalPresentationStyle = .fullScreen

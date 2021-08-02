@@ -7,14 +7,14 @@
 
 import UIKit
 
-public struct OTDInfoViewControllerModel {
-    let info : [OTDinfoModel]
-    public init(info:[OTDinfoModel]) {
+public struct OTDDetailViewControllerModel {
+    let info : [OTDDetailModel]
+    public init(info:[OTDDetailModel]) {
         self.info = info
     }
 }
 
-public struct OTDinfoModel {
+public struct OTDDetailModel {
     let title: String
     let value: String
     public init(title:String, value: String) {
@@ -24,11 +24,11 @@ public struct OTDinfoModel {
 }
 
 class OTDDetailViewController: UIViewController {
-    private var viewModel: OTDInfoViewControllerModel!
+    private var viewModel: OTDDetailViewControllerModel!
     private var textView = UITextView()
     public var logFileName = ""
 
-    init(viewModel: OTDInfoViewControllerModel) {
+    init(viewModel: OTDDetailViewControllerModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
