@@ -70,8 +70,6 @@ extension OTDScreenViewController: UITableViewDataSource {
 
 extension OTDScreenViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        viewModel.cellModels[indexPath.row].onTap { (model) in
-//        }
         openDetailScreen(cellModel: viewModel.cellModels[indexPath.row])
     }
 }
@@ -108,9 +106,9 @@ extension OTDScreenViewController {
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel , handler:nil))
             self.present(alert, animated: true, completion: nil)
         case .clearConsoleLog:
-            print("Provide data source for basic info ")
+            self.clearConsoleLog()
         case .clearPlayerLog:
-            print("Provide data source for basic info ")
+            self.clearPlayerLog()
         }
     }
 
@@ -134,6 +132,14 @@ extension OTDScreenViewController {
             nav.modalPresentationStyle = .fullScreen
             self.present(nav, animated: true, completion: nil)
         }
+    }
+
+    func clearPlayerLog() {
+
+    }
+
+    func clearConsoleLog() {
+        //OTDManager.shared.consoleLoger.clearConsoleLog()
     }
 }
 

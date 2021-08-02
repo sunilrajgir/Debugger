@@ -15,6 +15,10 @@ class OTDConsolLogger {
     private var logs = ""
 
     init(){
+        setupLogFolder()
+    }
+
+    private func setupLogFolder() {
         createLogDirectory()
         createFolder()
         createCurrentLogFile()
@@ -50,7 +54,7 @@ class OTDConsolLogger {
     }
 
     func allLogDirectory() -> [String] {
-        if let allContents = try? FileManager.default.contentsOfDirectory(atPath:logDirectory!.path) {
+        if let path = logDirectory?.path,  let allContents = try? FileManager.default.contentsOfDirectory(atPath:path) {
             return allContents
         }
         return []
@@ -69,11 +73,21 @@ class OTDConsolLogger {
         return try? String(contentsOf:fileUrl, encoding: String.Encoding.utf8)
     }
 
+    func clearConsoleLog() {
+        if let path = logDirectory?.path {
+            try? FileManager.default.removeItem(atPath: path)
+        }
+        logDirectory = nil
+    }
+
     func logFilePath(fileName:String) -> URL {
         return currentFolder!.appendingPathComponent(fileName)
     }
 
     func appendInConsoleLogFile(_ items: Any..., separator: String = " ", terminator: String = "\n") {
+        if logDirectory == nil {
+            setupLogFolder()
+        }
         try? "\(items)".appendToURL(fileURL: currentLogFile!)
     }
 }
