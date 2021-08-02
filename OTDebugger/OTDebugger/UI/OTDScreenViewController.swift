@@ -108,7 +108,7 @@ extension OTDScreenViewController {
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel , handler:nil))
             self.present(alert, animated: true, completion: nil)
         case .cmsConfig:
-            if let log = OTDManager.shared.dataSource?.playerLog() {
+            if let log = OTDManager.shared.dataSource?.cmsConfigLog() {
                 let view = OTDDetailViewController(viewModel: OTDDetailViewControllerModel(info: [OTDDetailModel(title: "Console Log", value: log)]))
                 let nav = UINavigationController(rootViewController: view)
                 nav.modalPresentationStyle = .fullScreen
@@ -117,7 +117,7 @@ extension OTDScreenViewController {
                 print("Provide data source for basic info ")
             }
         case .translationDiff:
-            if let log = OTDManager.shared.dataSource?.playerLog() {
+            if let log = OTDManager.shared.dataSource?.translationDiff() {
                 let view = OTDDetailViewController(viewModel: OTDDetailViewControllerModel(info: [OTDDetailModel(title: "Console Log", value: log)]))
                 let nav = UINavigationController(rootViewController: view)
                 nav.modalPresentationStyle = .fullScreen
