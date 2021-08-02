@@ -18,6 +18,11 @@ public enum OTDInfoType: String {
     case clearPlayerLog = "Clear Player Log"
 }
 
+public enum OTDLogType: String {
+    case console = "Console Log"
+    case player = "Player Log"
+}
+
 public protocol OTDManagerProtocol {
     func basicInfo() -> OTDDetailViewControllerModel
     func openFlex()
@@ -49,19 +54,24 @@ final public class OTDManager {
         }
     }
 
-    public func appendInConsoleLogFile(_ items: Any..., separator: String = " ", terminator: String = "\n", isInclude:Bool = true) {
+    public func appendInConsoleLogFile(_ items: Any..., separator: String = " ", terminator: String = "\n", isInclude:Bool = true, logType: OTDLogType) {
         guard isInclude else {
             return
         }
-        DispatchQueue(label: "Serail Queue").async {
-            self.bufferLog.append(items)
-            if self.bufferLog.count >= self.bufferSize {
-                let logs = self.bufferLog.reduce("") { (interimResult, item) -> String in
-                    return "\(interimResult)" + "\(item)"
+        if logType == .console {
+            DispatchQueue(label: "Serail Queue").async {
+                self.bufferLog.append(items)
+                if self.bufferLog.count >= self.bufferSize {
+                    let logs = self.bufferLog.reduce("") { (interimResult, item) -> String in
+                        return "\(interimResult)" + "\(item)"
+                    }
+                    self.consoleLoger.appendInConsoleLogFile(logs)
+                    self.bufferLog.removeAll()
                 }
-                self.consoleLoger.appendInConsoleLogFile(logs)
-                self.bufferLog.removeAll()
             }
+        } else if logType == .player {
+
         }
+
     }
 }
