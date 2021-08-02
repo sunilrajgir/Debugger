@@ -47,7 +47,10 @@ final public class OTDManager {
         OTDScreenViewController.openDebugScreen()
     }
 
-    public func appendInConsoleLogFile(_ items: Any..., separator: String = " ", terminator: String = "\n") {
+    public func appendInConsoleLogFile(_ items: Any..., separator: String = " ", terminator: String = "\n", isInclude:Bool = true) {
+        guard isInclude else {
+            return
+        }
         DispatchQueue(label: "Serail Queue").async {
             self.bufferLog.append(items)
             if self.bufferLog.count >= self.bufferSize {
