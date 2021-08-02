@@ -113,6 +113,7 @@ extension OTDScreenViewController {
                     self.processSelectedFolder(folderName: folder)
                 }))
             }
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel , handler:nil))
             self.present(alert, animated: true, completion: nil)
         case .clearConsoleLog:
             print("Provide data source for basic info ")
@@ -129,6 +130,7 @@ extension OTDScreenViewController {
                 self.openLogFile(fileName: file)
             }))
         }
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel , handler:nil))
         self.present(alert, animated: true, completion: nil)
     }
 
