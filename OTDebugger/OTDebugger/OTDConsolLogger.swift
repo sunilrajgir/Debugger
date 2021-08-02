@@ -83,6 +83,7 @@ class OTDConsolLogger {
 
     func appendInConsoleLogFile(_ items: Any..., separator: String = " ", terminator: String = "\n") {
         DispatchQueue.global(qos: .default).async(flags: .barrier) {
+            self.inMemoryLogs.append(items)
             if self.inMemoryLogs.count >= self.bufferSize {
                 self.dumpInFile()
             }
