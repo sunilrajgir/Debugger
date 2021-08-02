@@ -9,10 +9,10 @@ import UIKit
 
 class OTDLandingCell: UITableViewCell {
 
-    var titleLabel = UILabel()
-    var switchButton = UISwitch()
-    var onSwitchAction : ((_ isOn: Bool, _ type: OTDInfoType)->Void)?
-    var data: OTDLandingCellModel?
+    private let titleLabel = UILabel()
+    private let switchButton = UISwitch()
+    private var onSwitchAction : ((_ isOn: Bool, _ type: OTDInfoType)->Void)?
+    private var data: OTDLandingCellModel?
 
     override func awakeFromNib() {
         super.awakeFromNib()
