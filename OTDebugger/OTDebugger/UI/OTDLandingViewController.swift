@@ -57,7 +57,14 @@ extension OTDLandingViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "OTDebugCell", for: indexPath) as? OTDLandingCell {
-            cell.configureCell(data: viewModel.cellModels[indexPath.row])
+            cell.configureCell(data: viewModel.cellModels[indexPath.row]) { [weak self](isOn, type) in
+                if type == .translation {
+                    OTDManager.shared.isTranslationKeyEnabled = isOn
+                    OTDManager.shared.isDebugViewOpened = false
+                    OTDManager.shared.dataSource?.handleTranslationKey(isEnabled: isOn)
+                    self?.dismiss(animated: false, completion: nil)
+                }
+            }
             return cell
         }
         return UITableViewCell()

@@ -51,13 +51,13 @@ class OTDLandingCell: UITableViewCell {
 
     @objc func switchValueChanged(_ sender: UISwitch!) {
         if self.data?.type == .translation {
-            OTDManager.shared.dataSource?.handleTranslationKey(isEnabled: sender.isOn)
-            OTDManager.shared.isTranslationKeyEnabled = sender.isOn
+            self.onSwitchAction?(sender.isOn, .translation)
         }
     }
 
-    func configureCell(data: OTDLandingCellModel) {
+    func configureCell(data: OTDLandingCellModel, completionBlock:((_ isOn: Bool, _ type: OTDLandingCellType)->Void)?) {
         self.data = data
+        self.onSwitchAction = completionBlock
         switchButton.isOn = OTDManager.shared.isTranslationKeyEnabled
         if data.type == .translation {
             self.accessoryType = .none
