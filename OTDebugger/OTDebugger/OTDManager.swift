@@ -31,24 +31,18 @@ public protocol OTDManagerProtocol {
 }
 
 public class OTDManager {
-    let infoTypes: [OTDInfoType]
+    static public let shared = OTDManager()
+    private init() {
+    }
+    var infoTypes: [OTDInfoType]?
     var dataSource: OTDManagerProtocol?
-    public init(infoTypes: [OTDInfoType], dataSource:OTDManagerProtocol?) {
+    public func configure(infoTypes: [OTDInfoType], dataSource:OTDManagerProtocol?) {
         self.infoTypes = infoTypes
         self.dataSource = dataSource
     }
-    deinit {
-        print("deinit: OTDManager")
-    }
     public func openDebugScreen() {
-        var models = [OTDScreenCellModel]()
-        for type in infoTypes {
-            let cellModel = OTDScreenCellModel(type: type, title: type.rawValue)
-            models.append(cellModel)
+        if let infoType = infoTypes {
+            OTDScreenViewController.openDebugScreen(infoTypes: infoType)
         }
-        let debugViewController = OTDScreenViewController(viewModel: OTDScreenViewControllerModel(cellModels: models),dataSource: dataSource)
-        let nav = UINavigationController(rootViewController: debugViewController)
-        nav.modalPresentationStyle = .fullScreen
-        UIApplication.shared.keyWindow?.rootViewController?.present(nav, animated: true, completion: nil)
     }
 }

@@ -10,11 +10,9 @@ import UIKit
 class OTDScreenViewController: UIViewController {
     var tableView = UITableView()
     var viewModel: OTDScreenViewControllerModel!
-    var dataSource: OTDManagerProtocol?
-    init(viewModel: OTDScreenViewControllerModel, dataSource: OTDManagerProtocol?) {
+    init(viewModel: OTDScreenViewControllerModel) {
         super.init(nibName: nil, bundle: nil)
         self.viewModel = viewModel
-        self.dataSource = dataSource
     }
 
     required init?(coder: NSCoder) {
@@ -42,7 +40,7 @@ class OTDScreenViewController: UIViewController {
 
     @objc func doneAction() {
         self.dismiss(animated: false) {
-            self.dataSource?.dismiss()
+            OTDManager.shared.dataSource?.dismiss()
         }
     }
 }
@@ -61,9 +59,9 @@ extension OTDScreenViewController: UITableViewDataSource {
             cell.configureCell(data: viewModel.cellModels[indexPath.row])
             cell.onSwitchAction =  {(isOn,type) in
                 if type == .translation {
-                    self.dataSource?.handleTranslationKey(isOn)
+                    OTDManager.shared.dataSource?.handleTranslationKey(isOn)
                 } else if type == .uIDebug {
-                    self.dataSource?.openFlex(isOn)
+                    OTDManager.shared.dataSource?.openFlex(isOn)
                 }
             }
             return cell
@@ -88,7 +86,7 @@ extension OTDScreenViewController {
     func openDetailScreen(cellModel: OTDScreenCellModel) {
         switch cellModel.type {
         case .appInfo:
-            if let viewModel = dataSource?.basicInfo() {
+            if let viewModel = OTDManager.shared.dataSource?.basicInfo() {
                 let view = OTDInfoViewController(viewModel: viewModel)
                 self.present(view, animated: true, completion: nil)
             } else {
@@ -99,7 +97,7 @@ extension OTDScreenViewController {
         case .uIDebug:
             print("Switch Action")
         case .playerLog:
-            if let log = dataSource?.playerLog() {
+            if let log = OTDManager.shared.dataSource?.playerLog() {
                 let view = OTDInfoViewController(viewModel: OTDInfoViewControllerModel(info: [OTDinfoModel(title: "Console Log", value: log)]))
                 self.present(view, animated: true, completion: nil)
             } else {
@@ -108,7 +106,7 @@ extension OTDScreenViewController {
         case .apiLog:
             print("api logs")
         case .consoleLog:
-            if let logFolders = dataSource?.consoleAllLogFolders() {
+            if let logFolders = OTDManager.shared.dataSource?.consoleAllLogFolders() {
                 let alert = UIAlertController(title: "Log Folder", message: "Please Select Log Folder", preferredStyle: .actionSheet)
                 for folder in logFolders {
                     alert.addAction(UIAlertAction(title: folder, style: .default , handler:{(UIAlertAction)in
@@ -128,7 +126,7 @@ extension OTDScreenViewController {
     }
 
     func processSelectedFolder(folderName: String) {
-        if let logFiles = dataSource?.consoleAllLogFilesIn(folderName) {
+        if let logFiles = OTDManager.shared.dataSource?.consoleAllLogFilesIn(folderName) {
             let alert = UIAlertController(title: "Log Files", message: "Please Select log file", preferredStyle: .actionSheet)
             for file in logFiles {
                 alert.addAction(UIAlertAction(title: file, style: .default , handler:{(UIAlertAction)in
@@ -140,11 +138,25 @@ extension OTDScreenViewController {
     }
 
     func openLogFile(fileName: String) {
-        if let log = dataSource?.consoleLogIn(fileName) {
+        if let log = OTDManager.shared.dataSource?.consoleLogIn(fileName) {
             let view = OTDInfoViewController(viewModel: OTDInfoViewControllerModel(info: [OTDinfoModel(title: "Console Log", value: log)]))
             let nav = UINavigationController(rootViewController: view)
             nav.modalPresentationStyle = .fullScreen
             self.present(nav, animated: true, completion: nil)
         }
+    }
+}
+
+extension OTDScreenViewController {
+    class func openDebugScreen(infoTypes:[OTDInfoType]) {
+        var models = [OTDScreenCellModel]()
+        for type in infoTypes {
+            let cellModel = OTDScreenCellModel(type: type, title: type.rawValue)
+            models.append(cellModel)
+        }
+        let debugViewController = OTDScreenViewController(viewModel: OTDScreenViewControllerModel(cellModels: models))
+        let nav = UINavigationController(rootViewController: debugViewController)
+        nav.modalPresentationStyle = .fullScreen
+        UIApplication.shared.keyWindow?.rootViewController?.present(nav, animated: true, completion: nil)
     }
 }
