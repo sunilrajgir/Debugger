@@ -32,7 +32,7 @@ public protocol OTDManagerProtocol {
 
 final public class OTDManager {
     static public let shared = OTDManager()
-    private let bufferSize = 50
+    public let bufferSize = 50
     private init() {
     }
     var infoTypes: [OTDInfoType]?
