@@ -8,10 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		4313CDAF26AAA4AE00D55229 /* OTDManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4313CDAE26AAA4AE00D55229 /* OTDManager.swift */; };
-		4318D75526AAC0D800877D3F /* OTDScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4318D75426AAC0D800877D3F /* OTDScreenViewController.swift */; };
-		4318D75826AAC98D00877D3F /* OTDebugCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4318D75726AAC98D00877D3F /* OTDebugCell.swift */; };
-		4318D75B26AACADB00877D3F /* OTDScreenViewControllerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4318D75A26AACADB00877D3F /* OTDScreenViewControllerModel.swift */; };
-		4318D76026AAD36E00877D3F /* OTDScreenCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4318D75F26AAD36E00877D3F /* OTDScreenCellModel.swift */; };
+		4318D75526AAC0D800877D3F /* OTDLandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4318D75426AAC0D800877D3F /* OTDLandingViewController.swift */; };
+		4318D75826AAC98D00877D3F /* OTDLandingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4318D75726AAC98D00877D3F /* OTDLandingCell.swift */; };
+		4318D75B26AACADB00877D3F /* OTDLandingViewControllerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4318D75A26AACADB00877D3F /* OTDLandingViewControllerModel.swift */; };
+		4318D76026AAD36E00877D3F /* OTDLandingCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4318D75F26AAD36E00877D3F /* OTDLandingCellModel.swift */; };
 		4318D76326AAE50000877D3F /* OTDDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4318D76226AAE50000877D3F /* OTDDetailViewController.swift */; };
 		437CE9A726B7C60000F63296 /* OTDConsolLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437CE9A626B7C60000F63296 /* OTDConsolLogger.swift */; };
 		43822C4526A95BC500A4AF63 /* OTDebugger.h in Headers */ = {isa = PBXBuildFile; fileRef = 43822C4326A95BC500A4AF63 /* OTDebugger.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -21,10 +21,10 @@
 
 /* Begin PBXFileReference section */
 		4313CDAE26AAA4AE00D55229 /* OTDManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTDManager.swift; sourceTree = "<group>"; };
-		4318D75426AAC0D800877D3F /* OTDScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTDScreenViewController.swift; sourceTree = "<group>"; };
-		4318D75726AAC98D00877D3F /* OTDebugCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTDebugCell.swift; sourceTree = "<group>"; };
-		4318D75A26AACADB00877D3F /* OTDScreenViewControllerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTDScreenViewControllerModel.swift; sourceTree = "<group>"; };
-		4318D75F26AAD36E00877D3F /* OTDScreenCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTDScreenCellModel.swift; sourceTree = "<group>"; };
+		4318D75426AAC0D800877D3F /* OTDLandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTDLandingViewController.swift; sourceTree = "<group>"; };
+		4318D75726AAC98D00877D3F /* OTDLandingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTDLandingCell.swift; sourceTree = "<group>"; };
+		4318D75A26AACADB00877D3F /* OTDLandingViewControllerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTDLandingViewControllerModel.swift; sourceTree = "<group>"; };
+		4318D75F26AAD36E00877D3F /* OTDLandingCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTDLandingCellModel.swift; sourceTree = "<group>"; };
 		4318D76226AAE50000877D3F /* OTDDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTDDetailViewController.swift; sourceTree = "<group>"; };
 		437CE9A626B7C60000F63296 /* OTDConsolLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTDConsolLogger.swift; sourceTree = "<group>"; };
 		43822C4026A95BC500A4AF63 /* OTDebugger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OTDebugger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -48,8 +48,8 @@
 		437CE9A926B7CDCD00F63296 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				4318D75426AAC0D800877D3F /* OTDScreenViewController.swift */,
-				4318D75726AAC98D00877D3F /* OTDebugCell.swift */,
+				4318D75426AAC0D800877D3F /* OTDLandingViewController.swift */,
+				4318D75726AAC98D00877D3F /* OTDLandingCell.swift */,
 				4318D76226AAE50000877D3F /* OTDDetailViewController.swift */,
 			);
 			path = UI;
@@ -58,8 +58,8 @@
 		437CE9AF26B7DF5F00F63296 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				4318D75F26AAD36E00877D3F /* OTDScreenCellModel.swift */,
-				4318D75A26AACADB00877D3F /* OTDScreenViewControllerModel.swift */,
+				4318D75F26AAD36E00877D3F /* OTDLandingCellModel.swift */,
+				4318D75A26AACADB00877D3F /* OTDLandingViewControllerModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -182,15 +182,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4318D75B26AACADB00877D3F /* OTDScreenViewControllerModel.swift in Sources */,
+				4318D75B26AACADB00877D3F /* OTDLandingViewControllerModel.swift in Sources */,
 				438943E726B846B300633E8E /* OTDLogger.swift in Sources */,
 				4313CDAF26AAA4AE00D55229 /* OTDManager.swift in Sources */,
 				4318D76326AAE50000877D3F /* OTDDetailViewController.swift in Sources */,
-				4318D76026AAD36E00877D3F /* OTDScreenCellModel.swift in Sources */,
+				4318D76026AAD36E00877D3F /* OTDLandingCellModel.swift in Sources */,
 				43CE9D6E26B7F81F001CF260 /* Utility.swift in Sources */,
 				437CE9A726B7C60000F63296 /* OTDConsolLogger.swift in Sources */,
-				4318D75826AAC98D00877D3F /* OTDebugCell.swift in Sources */,
-				4318D75526AAC0D800877D3F /* OTDScreenViewController.swift in Sources */,
+				4318D75826AAC98D00877D3F /* OTDLandingCell.swift in Sources */,
+				4318D75526AAC0D800877D3F /* OTDLandingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

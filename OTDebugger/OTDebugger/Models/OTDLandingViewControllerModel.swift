@@ -7,9 +7,9 @@
 
 import Foundation
 
-struct OTDScreenViewControllerModel {
-    let cellModels: [OTDScreenCellModel]
-    init(cellModels: [OTDScreenCellModel]) {
+struct OTDLandingViewControllerModel {
+    let cellModels: [OTDLandingCellModel]
+    init(cellModels: [OTDLandingCellModel]) {
         self.cellModels = cellModels
     }
 }

@@ -7,12 +7,12 @@
 
 import UIKit
 
-class OTDebugCell: UITableViewCell {
+class OTDLandingCell: UITableViewCell {
 
     var titleLabel = UILabel()
     var switchButton = UISwitch()
     var onSwitchAction : ((_ isOn: Bool, _ type: OTDInfoType)->Void)?
-    var data: OTDScreenCellModel?
+    var data: OTDLandingCellModel?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -55,7 +55,7 @@ class OTDebugCell: UITableViewCell {
         }
     }
 
-    func configureCell(data: OTDScreenCellModel) {
+    func configureCell(data: OTDLandingCellModel) {
         self.data = data
         switchButton.isOn = OTDManager.shared.isTranslationKeyEnabled
         if data.type == .translation {

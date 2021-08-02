@@ -8,10 +8,10 @@
 import Foundation
 
 protocol OTDScreenCellModelProtocol {
-    func onTap(_ completion:((_ model: OTDScreenCellModel) -> Void))
+    func onTap(_ completion:((_ model: OTDLandingCellModel) -> Void))
 }
 
-struct OTDScreenCellModel:OTDScreenCellModelProtocol {
+struct OTDLandingCellModel:OTDScreenCellModelProtocol {
     let title: String
     let type: OTDInfoType
     init(type:OTDInfoType, title: String) {
@@ -19,7 +19,7 @@ struct OTDScreenCellModel:OTDScreenCellModelProtocol {
         self.title = title
     }
 
-    func onTap(_ completion: ((_ model: OTDScreenCellModel) -> Void)) {
+    func onTap(_ completion: ((_ model: OTDLandingCellModel) -> Void)) {
 
     }
 }

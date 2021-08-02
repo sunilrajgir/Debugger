@@ -7,10 +7,10 @@
 
 import UIKit
 
-class OTDScreenViewController: UIViewController {
+class OTDLandingViewController: UIViewController {
     var tableView = UITableView()
-    var viewModel: OTDScreenViewControllerModel!
-    init(viewModel: OTDScreenViewControllerModel) {
+    var viewModel: OTDLandingViewControllerModel!
+    init(viewModel: OTDLandingViewControllerModel) {
         super.init(nibName: nil, bundle: nil)
         self.viewModel = viewModel
     }
@@ -31,7 +31,7 @@ class OTDScreenViewController: UIViewController {
 
     func setupTableView(){
         tableView.frame = view.frame
-        tableView.register(OTDebugCell.self, forCellReuseIdentifier: "OTDebugCell")
+        tableView.register(OTDLandingCell.self, forCellReuseIdentifier: "OTDebugCell")
         tableView.delegate = self
         tableView.dataSource = self
         tableView.tableFooterView = UIView()
@@ -46,7 +46,7 @@ class OTDScreenViewController: UIViewController {
     }
 }
 
-extension OTDScreenViewController: UITableViewDataSource {
+extension OTDLandingViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return viewModel.cellModels.count > 0 ? 1 : 0
     }
@@ -56,7 +56,7 @@ extension OTDScreenViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "OTDebugCell", for: indexPath) as? OTDebugCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "OTDebugCell", for: indexPath) as? OTDLandingCell {
             cell.configureCell(data: viewModel.cellModels[indexPath.row])
             return cell
         }
@@ -68,14 +68,14 @@ extension OTDScreenViewController: UITableViewDataSource {
     }
 }
 
-extension OTDScreenViewController: UITableViewDelegate {
+extension OTDLandingViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         openDetailScreen(cellModel: viewModel.cellModels[indexPath.row])
     }
 }
 
-extension OTDScreenViewController {
-    func openDetailScreen(cellModel: OTDScreenCellModel) {
+extension OTDLandingViewController {
+    func openDetailScreen(cellModel: OTDLandingCellModel) {
         switch cellModel.type {
         case .appInfo:
             if let viewModel = OTDManager.shared.dataSource?.basicInfo() {
@@ -163,15 +163,15 @@ extension OTDScreenViewController {
     }
 }
 
-extension OTDScreenViewController {
+extension OTDLandingViewController {
     class func openDebugScreen() {
-        var models = [OTDScreenCellModel]()
+        var models = [OTDLandingCellModel]()
         if let infoTypes = OTDManager.shared.infoTypes {
             for type in infoTypes {
-                let cellModel = OTDScreenCellModel(type: type, title: type.rawValue)
+                let cellModel = OTDLandingCellModel(type: type, title: type.rawValue)
                 models.append(cellModel)
             }
-            let debugViewController = OTDScreenViewController(viewModel: OTDScreenViewControllerModel(cellModels: models))
+            let debugViewController = OTDLandingViewController(viewModel: OTDLandingViewControllerModel(cellModels: models))
             let nav = UINavigationController(rootViewController: debugViewController)
             nav.modalPresentationStyle = .fullScreen
             UIApplication.shared.keyWindow?.rootViewController?.present(nav, animated: true, completion: nil)

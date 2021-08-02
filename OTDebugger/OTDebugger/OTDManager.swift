@@ -52,7 +52,7 @@ final public class OTDManager {
     public func openDebugScreen() {
         if !isDebugViewOpened {
             isDebugViewOpened = true
-            OTDScreenViewController.openDebugScreen()
+            OTDLandingViewController.openDebugScreen()
         }
     }
 
