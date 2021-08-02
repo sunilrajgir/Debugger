@@ -17,7 +17,6 @@
 		43822C4526A95BC500A4AF63 /* OTDebugger.h in Headers */ = {isa = PBXBuildFile; fileRef = 43822C4326A95BC500A4AF63 /* OTDebugger.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		438943E726B846B300633E8E /* OTDLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438943E626B846B300633E8E /* OTDLogger.swift */; };
 		43CE9D6E26B7F81F001CF260 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CE9D6D26B7F81F001CF260 /* Utility.swift */; };
-		43CE9D7226B7F8AB001CF260 /* OTDPlayerLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CE9D7126B7F8AB001CF260 /* OTDPlayerLogger.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,7 +32,6 @@
 		43822C4426A95BC500A4AF63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		438943E626B846B300633E8E /* OTDLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTDLogger.swift; sourceTree = "<group>"; };
 		43CE9D6D26B7F81F001CF260 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
-		43CE9D7126B7F8AB001CF260 /* OTDPlayerLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTDPlayerLogger.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,7 +90,6 @@
 				43822C4426A95BC500A4AF63 /* Info.plist */,
 				4313CDAE26AAA4AE00D55229 /* OTDManager.swift */,
 				437CE9A626B7C60000F63296 /* OTDConsolLogger.swift */,
-				43CE9D7126B7F8AB001CF260 /* OTDPlayerLogger.swift */,
 				438943E626B846B300633E8E /* OTDLogger.swift */,
 			);
 			path = OTDebugger;
@@ -194,7 +191,6 @@
 				437CE9A726B7C60000F63296 /* OTDConsolLogger.swift in Sources */,
 				4318D75826AAC98D00877D3F /* OTDebugCell.swift in Sources */,
 				4318D75526AAC0D800877D3F /* OTDScreenViewController.swift in Sources */,
-				43CE9D7226B7F8AB001CF260 /* OTDPlayerLogger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
