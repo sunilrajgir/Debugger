@@ -39,8 +39,6 @@ final public class OTDManager {
     var infoTypes: [OTDInfoType]?
     var dataSource: OTDManagerProtocol?
     let logger = OTDLogger()
-    public let bufferSize = 1
-    var bufferLog = [Any]()
     public var isDebugViewOpened = false
     public var isTranslationKeyEnabled = false
 
