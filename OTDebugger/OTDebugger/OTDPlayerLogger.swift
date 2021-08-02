@@ -1,5 +1,5 @@
 //
-//  OTDConsolLogger.swift
+//  OTDPlayerLogger.swift
 //  OTDebugger
 //
 //  Created by Sunil Kumar on 02/08/21.
@@ -8,7 +8,7 @@
 import Foundation
 
 
-class OTDConsolLogger {
+class OTDPlayerLogger {
     var logDirectory: URL?
     var currentFolder: URL?
     var currentLogFile: URL?
@@ -27,7 +27,7 @@ class OTDConsolLogger {
     private func createLogDirectory() {
         let filemgr = FileManager.default
         let dirPaths = filemgr.urls(for: .documentDirectory, in: .userDomainMask)
-        logDirectory = dirPaths[0].appendingPathComponent("OTLogs")
+        logDirectory = dirPaths[0].appendingPathComponent("OTPlayer")
     }
 
     private func createFolder() {

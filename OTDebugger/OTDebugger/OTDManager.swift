@@ -21,7 +21,6 @@ public enum OTDInfoType: String {
 public protocol OTDManagerProtocol {
     func basicInfo() -> OTDDetailViewControllerModel
     func openFlex()
-    func handleTranslationKey(_ enable:Bool)
     func playerLog() -> String
     func dismiss()
 }

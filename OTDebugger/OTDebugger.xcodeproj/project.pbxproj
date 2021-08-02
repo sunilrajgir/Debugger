@@ -15,6 +15,8 @@
 		4318D76326AAE50000877D3F /* OTDDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4318D76226AAE50000877D3F /* OTDDetailViewController.swift */; };
 		437CE9A726B7C60000F63296 /* OTDConsolLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437CE9A626B7C60000F63296 /* OTDConsolLogger.swift */; };
 		43822C4526A95BC500A4AF63 /* OTDebugger.h in Headers */ = {isa = PBXBuildFile; fileRef = 43822C4326A95BC500A4AF63 /* OTDebugger.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		43CE9D6E26B7F81F001CF260 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CE9D6D26B7F81F001CF260 /* Utility.swift */; };
+		43CE9D7226B7F8AB001CF260 /* OTDPlayerLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CE9D7126B7F8AB001CF260 /* OTDPlayerLogger.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		43822C4026A95BC500A4AF63 /* OTDebugger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OTDebugger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43822C4326A95BC500A4AF63 /* OTDebugger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OTDebugger.h; sourceTree = "<group>"; };
 		43822C4426A95BC500A4AF63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		43CE9D6D26B7F81F001CF260 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
+		43CE9D7126B7F8AB001CF260 /* OTDPlayerLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTDPlayerLogger.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,14 +83,24 @@
 		43822C4226A95BC500A4AF63 /* OTDebugger */ = {
 			isa = PBXGroup;
 			children = (
+				43CE9D6C26B7F808001CF260 /* Utility */,
 				437CE9AF26B7DF5F00F63296 /* Models */,
 				437CE9A926B7CDCD00F63296 /* UI */,
 				43822C4326A95BC500A4AF63 /* OTDebugger.h */,
 				43822C4426A95BC500A4AF63 /* Info.plist */,
 				4313CDAE26AAA4AE00D55229 /* OTDManager.swift */,
 				437CE9A626B7C60000F63296 /* OTDConsolLogger.swift */,
+				43CE9D7126B7F8AB001CF260 /* OTDPlayerLogger.swift */,
 			);
 			path = OTDebugger;
+			sourceTree = "<group>";
+		};
+		43CE9D6C26B7F808001CF260 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				43CE9D6D26B7F81F001CF260 /* Utility.swift */,
+			);
+			path = Utility;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -172,9 +186,11 @@
 				4313CDAF26AAA4AE00D55229 /* OTDManager.swift in Sources */,
 				4318D76326AAE50000877D3F /* OTDDetailViewController.swift in Sources */,
 				4318D76026AAD36E00877D3F /* OTDScreenCellModel.swift in Sources */,
+				43CE9D6E26B7F81F001CF260 /* Utility.swift in Sources */,
 				437CE9A726B7C60000F63296 /* OTDConsolLogger.swift in Sources */,
 				4318D75826AAC98D00877D3F /* OTDebugCell.swift in Sources */,
 				4318D75526AAC0D800877D3F /* OTDScreenViewController.swift in Sources */,
+				43CE9D7226B7F8AB001CF260 /* OTDPlayerLogger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
