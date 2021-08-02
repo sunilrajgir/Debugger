@@ -13,8 +13,8 @@ protocol OTDScreenCellModelProtocol {
 
 struct OTDLandingCellModel:OTDScreenCellModelProtocol {
     let title: String
-    let type: OTDInfoType
-    init(type:OTDInfoType, title: String) {
+    let type: OTDLandingCellType
+    init(type:OTDLandingCellType, title: String) {
         self.type = type
         self.title = title
     }

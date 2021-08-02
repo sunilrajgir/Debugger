@@ -11,7 +11,7 @@ class OTDLandingCell: UITableViewCell {
 
     private let titleLabel = UILabel()
     private let switchButton = UISwitch()
-    private var onSwitchAction : ((_ isOn: Bool, _ type: OTDInfoType)->Void)?
+    private var onSwitchAction : ((_ isOn: Bool, _ type: OTDLandingCellType)->Void)?
     private var data: OTDLandingCellModel?
 
     override func awakeFromNib() {

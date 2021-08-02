@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-public enum OTDInfoType: String {
+public enum OTDLandingCellType: String {
     case appInfo = "App Info"
     case translation = "Show Translation Key"
     case uIDebug = "Flex Debug"
@@ -36,7 +36,7 @@ public protocol OTDManagerProtocol {
 
 final public class OTDManager {
     static public let shared = OTDManager()
-    var infoTypes: [OTDInfoType]?
+    var infoTypes: [OTDLandingCellType]?
     var dataSource: OTDManagerProtocol?
     let logger = OTDLogger()
     public var isDebugViewOpened = false
@@ -45,7 +45,7 @@ final public class OTDManager {
     private init() {
     }
 
-    public func configure(infoTypes: [OTDInfoType], dataSource:OTDManagerProtocol?) {
+    public func configure(infoTypes: [OTDLandingCellType], dataSource:OTDManagerProtocol?) {
         self.infoTypes = infoTypes
         self.dataSource = dataSource
     }
