@@ -27,7 +27,7 @@ class OTDScreenViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneAction))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneAction))
         setupTableView()
     }
 
@@ -142,7 +142,9 @@ extension OTDScreenViewController {
     func openLogFile(fileName: String) {
         if let log = dataSource?.consoleLogIn(fileName) {
             let view = OTDInfoViewController(viewModel: OTDInfoViewControllerModel(info: [OTDinfoModel(title: "Console Log", value: log)]))
-            self.present(view, animated: true, completion: nil)
+            let nav = UINavigationController(rootViewController: view)
+            nav.modalPresentationStyle = .fullScreen
+            self.present(nav, animated: true, completion: nil)
         }
     }
 }
