@@ -156,11 +156,11 @@ extension OTDLandingViewController {
     }
 
     private func processTranslationFile(file: URL, translationDirectory: URL) {
-        openDetail(title: "Translation", val: "", url: file)
+        openDetail(title: "Translation", val: "", url: file, zipUrl: translationDirectory)
     }
 
-    private func openDetail(title:String, val:String, url: URL) {
-        let detailModel = OTDDetailViewControllerModel(info: [OTDDetailModel(title: title, value: val)], url: url)
+    private func openDetail(title:String, val:String, url: URL, zipUrl: URL? = nil) {
+        let detailModel = OTDDetailViewControllerModel(info: [OTDDetailModel(title: title, value: val)], url: url, zipUrl: zipUrl)
         let view = OTDDetailViewController(viewModel: detailModel)
         let nav = UINavigationController(rootViewController: view)
         nav.modalPresentationStyle = .fullScreen
