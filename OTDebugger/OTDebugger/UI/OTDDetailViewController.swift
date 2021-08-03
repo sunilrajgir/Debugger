@@ -10,9 +10,11 @@ import UIKit
 public struct OTDDetailViewControllerModel {
     let info: [OTDDetailModel]
     let url: URL?
-    public init(info:[OTDDetailModel], url:URL?) {
+    let zipUrl: URL? 
+    public init(info: [OTDDetailModel], url: URL?, zipUrl: URL? = nil) {
         self.info = info
         self.url = url
+        self.zipUrl = zipUrl
     }
 }
 
@@ -86,13 +88,32 @@ class OTDDetailViewController: UIViewController {
 
     @objc func shareAction() {
         let items: [Any]
-        if let fileUrl = viewModel.url {
+        var deleteZipUrl: URL?
+        if let url = viewModel.zipUrl, let zipUrl = zipContent(url: url) {
+            deleteZipUrl = zipUrl
+            items = [zipUrl]
+        }else if let fileUrl = viewModel.url {
             items = [fileUrl]
         } else {
             items = [textView.text as Any]
         }
         let activityViewController = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        activityViewController.completionWithItemsHandler = { (activityType, completed:Bool, returnedItems:[Any]?, error: Error?) in
+            if deleteZipUrl != nil {
+                try? FileManager.default.removeItem(at: deleteZipUrl!)
+            }
+         }
         self.present(activityViewController, animated: true)
+    }
+
+    func zipContent(url: URL) -> URL? {
+        let coordinator = NSFileCoordinator()
+        var error: NSError?
+        let tempUrl = url.appendingPathComponent("TranslationShareArchive.zip")
+        coordinator.coordinate(readingItemAt: url, options: [.forUploading], error: &error) { (contentUrl) in
+            try? FileManager.default.copyItem(at: contentUrl, to: tempUrl)
+        }
+        return tempUrl
     }
 }
 
