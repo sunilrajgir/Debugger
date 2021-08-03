@@ -117,8 +117,8 @@ extension OTDLandingViewController {
                 print("Provide data source for basic info ")
             }
         case .translationDiff:
-            if let detailModel = OTDManager.shared.dataSource?.translationDiff() {
-                openDetail(detailModel: detailModel)
+            if let detailModel = OTDManager.shared.dataSource?.translationDiff(), let url = detailModel.url {
+                processTranslationFolderUrl(folderUrl: url)
             } else {
                 print("Provide data source for basic info ")
             }
