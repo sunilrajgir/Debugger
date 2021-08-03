@@ -129,6 +129,36 @@ extension OTDLandingViewController {
         }
     }
 
+    private func processTranslationFolderUrl(folderUrl:URL) {
+        if let allFolders = try? FileManager.default.contentsOfDirectory(atPath:folderUrl.path) {
+            let alert = UIAlertController(title: "Translation Folder", message: "Please Select Translation Folder", preferredStyle: .actionSheet)
+            for folder in allFolders {
+                alert.addAction(UIAlertAction(title: folder, style: .default , handler:{(UIAlertAction)in
+                    self.processTranslationContentFolder(folderUrl: folderUrl.appendingPathComponent(folder), translationDirectory: folderUrl)
+                }))
+                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel , handler:nil))
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
+    }
+
+    private func processTranslationContentFolder(folderUrl:URL, translationDirectory: URL) {
+        if let allFiles = try? FileManager.default.contentsOfDirectory(atPath:folderUrl.path) {
+            let alert = UIAlertController(title: "Translation Files", message: "Please Select Translation Files", preferredStyle: .actionSheet)
+            for file in allFiles {
+                alert.addAction(UIAlertAction(title: file, style: .default , handler:{(UIAlertAction) in
+                    self.processTranslationFile(file: folderUrl.appendingPathComponent(file), translationDirectory: translationDirectory)
+                }))
+                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel , handler:nil))
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
+    }
+
+    private func processTranslationFile(file: URL, translationDirectory: URL) {
+        openDetail(title: "Translation", val: "", url: file)
+    }
+
     private func openDetail(title:String, val:String, url: URL) {
         let detailModel = OTDDetailViewControllerModel(info: [OTDDetailModel(title: title, value: val)], url: url)
         let view = OTDDetailViewController(viewModel: detailModel)
