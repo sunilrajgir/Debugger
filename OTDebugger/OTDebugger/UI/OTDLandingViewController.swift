@@ -26,6 +26,8 @@ class OTDLandingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneAction))
+        let value = UIInterfaceOrientation.portrait.rawValue
+        UIDevice.current.setValue(value, forKey: "orientation")
         setupTableView()
     }
 
@@ -43,6 +45,18 @@ class OTDLandingViewController: UIViewController {
             OTDManager.shared.isDebugViewOpened = false
             OTDManager.shared.dataSource?.dismiss()
         }
+    }
+
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
+    }
+
+    override var shouldAutorotate: Bool {
+        return true
+    }
+
+    override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
+        return .portrait
     }
 }
 
@@ -164,6 +178,7 @@ extension OTDLandingViewController {
         let view = OTDDetailViewController(viewModel: detailModel)
         let nav = UINavigationController(rootViewController: view)
         nav.modalPresentationStyle = .fullScreen
+        nav.delegate = view
         self.present(nav, animated: true, completion: nil)
     }
 
@@ -171,6 +186,7 @@ extension OTDLandingViewController {
         let view = OTDDetailViewController(viewModel: detailModel)
         let nav = UINavigationController(rootViewController: view)
         nav.modalPresentationStyle = .fullScreen
+        nav.delegate = view
         self.present(nav, animated: true, completion: nil)
     }
 
@@ -198,6 +214,13 @@ extension OTDLandingViewController {
     func clearConsoleLog() {
         //OTDManager.shared.consoleLoger.clearConsoleLog()
     }
+
+}
+
+extension OTDLandingViewController: UINavigationControllerDelegate {
+    func navigationControllerSupportedInterfaceOrientations(_ navigationController: UINavigationController) -> UIInterfaceOrientationMask {
+        return .portrait
+    }
 }
 
 extension OTDLandingViewController {
@@ -211,6 +234,7 @@ extension OTDLandingViewController {
             let debugViewController = OTDLandingViewController(viewModel: OTDLandingViewControllerModel(cellModels: models))
             let nav = UINavigationController(rootViewController: debugViewController)
             nav.modalPresentationStyle = .fullScreen
+            nav.delegate = debugViewController
             UIApplication.shared.keyWindow?.rootViewController?.present(nav, animated: true, completion: nil)
         }
     }

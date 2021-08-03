@@ -117,3 +117,9 @@ class OTDDetailViewController: UIViewController {
     }
 }
 
+extension OTDDetailViewController: UINavigationControllerDelegate {
+    func navigationControllerSupportedInterfaceOrientations(_ navigationController: UINavigationController) -> UIInterfaceOrientationMask {
+        return .portrait
+    }
+}
+
