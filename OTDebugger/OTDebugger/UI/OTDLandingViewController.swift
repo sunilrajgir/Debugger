@@ -95,8 +95,8 @@ extension OTDLandingViewController {
         case .uIDebug:
             OTDManager.shared.dataSource?.openFlex()
         case .playerLog:
-            if let url = OTDManager.shared.dataSource?.playerLog() {
-                openDetail(title: "Player Log", val: " ", url: url)
+            if let detailModel = OTDManager.shared.dataSource?.playerLog() {
+                openDetail(detailModel: detailModel)
             } else {
                 print("Provide data source for basic info ")
             }
@@ -111,14 +111,14 @@ extension OTDLandingViewController {
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel , handler:nil))
             self.present(alert, animated: true, completion: nil)
         case .cmsConfig:
-            if let url = OTDManager.shared.dataSource?.cmsConfigLog() {
-                openDetail(title: "Player Log", val: " ", url: url)
+            if let detailModel = OTDManager.shared.dataSource?.cmsConfigLog() {
+                openDetail(detailModel: detailModel)
             } else {
                 print("Provide data source for basic info ")
             }
         case .translationDiff:
-            if let url = OTDManager.shared.dataSource?.translationDiff() {
-                openDetail(title: "translation Diff", val: " ", url: url)
+            if let detailModel = OTDManager.shared.dataSource?.translationDiff() {
+                openDetail(detailModel: detailModel)
             } else {
                 print("Provide data source for basic info ")
             }
