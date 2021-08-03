@@ -136,9 +136,9 @@ extension OTDLandingViewController {
                 alert.addAction(UIAlertAction(title: folder, style: .default , handler:{(UIAlertAction)in
                     self.processTranslationContentFolder(folderUrl: folderUrl.appendingPathComponent(folder), translationDirectory: folderUrl)
                 }))
-                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel , handler:nil))
-                self.present(alert, animated: true, completion: nil)
             }
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel , handler:nil))
+            self.present(alert, animated: true, completion: nil)
         }
     }
 
@@ -149,9 +149,9 @@ extension OTDLandingViewController {
                 alert.addAction(UIAlertAction(title: file, style: .default , handler:{(UIAlertAction) in
                     self.processTranslationFile(file: folderUrl.appendingPathComponent(file), translationDirectory: translationDirectory)
                 }))
-                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel , handler:nil))
-                self.present(alert, animated: true, completion: nil)
             }
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel , handler:nil))
+            self.present(alert, animated: true, completion: nil)
         }
     }
 
