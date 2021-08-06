@@ -13,7 +13,8 @@ class OTDConsolLogger {
     var currentFolder: URL?
     var currentLogFile: URL?
     var inMemoryLogs = [Any]()
-    var bufferSize = 50
+    let bufferSize = 50
+    let threadSafeQueue = DispatchQueue(label: "OTDThreadSafeQueue")
     init(){
         setupLogFolder()
     }
@@ -82,7 +83,7 @@ class OTDConsolLogger {
     }
 
     func appendInConsoleLogFile(_ items: Any..., separator: String = " ", terminator: String = "\n") {
-        DispatchQueue.global(qos: .default).async(flags: .barrier) {
+        threadSafeQueue.async(flags: .barrier) {
             self.inMemoryLogs.append(items)
             if self.inMemoryLogs.count >= self.bufferSize {
                 self.dumpInFile()
@@ -91,10 +92,12 @@ class OTDConsolLogger {
     }
 
     private func dumpInFile() {
-        let logs = self.inMemoryLogs.reduce("") { (interimResult, log) -> String in
-            return "\(interimResult)" + "\(log)"
+        threadSafeQueue.async(flags: .barrier) {
+            let logs = self.inMemoryLogs.reduce("") { (interimResult, log) -> String in
+                return "\(interimResult)" + "\(log)"
+            }
+            try? logs.appendToURL(fileURL: self.currentLogFile!)
+            self.inMemoryLogs.removeAll()
         }
-        try? logs.appendToURL(fileURL: self.currentLogFile!)
-        self.inMemoryLogs.removeAll()
     }
 }
